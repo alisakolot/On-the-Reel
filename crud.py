@@ -57,10 +57,11 @@ def create_video(video_path, description, date_posted):
 
     return video
 
-def create_image(image_path, description, date_posted):
+def create_image(image_path, description):
     """Create new video (info)."""
+    #BRING BACK DATE_POSTED
 
-    image = Image(image_path=image_path, description=description, date_posted=date_posted)
+    image = Image(image_path=image_path, description=description)
 
     db.session.add(image)
     db.session.commit()
@@ -105,7 +106,7 @@ def create_following(subscriber, creator):
 
 
 def get_username(username):
-    """Return username ."""
+    """Return username."""
     # import pdb; pdb.set_trace()
     return User.query.filter_by(username = username).first()
 

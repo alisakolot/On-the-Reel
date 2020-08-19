@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request, flash, session, redirect, url_for)
 import requests
-import os 
+import os
 import crud
 
 import cloudinary
@@ -11,14 +11,14 @@ import cloudinary.api
 
 app = Flask(__name__)
 
-cloud_name = os.environ["cloud_name"]
-cloudinary_api_key = os.environ["cloudinary_api_key"]
-cloudinary_api_secret = os.environ["cloudinary_api_secret"]
+cloud_name = os.environ["CLOUD_NAME"]
+cloudinary_api_key = os.environ["API_KEY"]
+cloudinary_api_secret = os.environ["API_SECRET"]
 
 cloudinary.config(
     cloud_name = cloud_name, 
     api_key = cloudinary_api_key, 
-    api_secret = cloudinary_api_key
+    api_secret = cloudinary_api_secret
 )
 
 

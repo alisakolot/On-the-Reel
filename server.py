@@ -5,6 +5,8 @@ from flask import (Flask, render_template, request, flash, session,
 from model import connect_to_db
 import crud
 
+import cloudinary_image_api
+
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
@@ -82,10 +84,10 @@ def logging_in_user():
     print('username =', username, 'password=', password)
     
     #getting the user object
-    db_user = crud.get_username(username)
-    
+    db_user = crud.get_username("username")
 
-    print(db_user)
+
+    print('******', db_user)
 
     if username != db_user.username: 
         flash('Incorrect username/password, please try again.')
@@ -98,12 +100,12 @@ def logging_in_user():
 
 #////////////////////////////////////////////////////Profile//////////////////////////////////////////////////
 
-@app.route('/profile', methods=['GET']) 
-def display_user():
-    """Display User Profile."""
+# @app.route('/profile', methods=['GET']) 
+# def display_user():
+#     """Display User Profile."""
     
 
-    return render_template('profile.html')
+#     return render_template('profile.html')
 
 
 
@@ -116,34 +118,36 @@ def show_user(user_id):
     
     return render_template('profile.html', user=user)
 
-@app.route('/profile/<user_id>')
-def upload_images():
+@app.route('/profile/<user_id>', methods=['POST'])
+def upload_images(user_id,):
     """Upload images."""
-    image = request.files.get("media-file")
+    image = request.files.get("file")
+    print(image)
+
     user_id = session.get('user_id')
+    print(user_id)
 
     if image:
-        image_url = api.upload_image(image)
-        image_name = request.form.get("submit-media")
-        new_image = crud.create_image(user_id, image_name, image_url)
+        image_path = cloudinary_image_api.upload_image(image)
+        print(image_path)
+        # image_name = request.form.get("submit-media")
+
+        # image_description =  api
+        new_image = crud.create_image(user_id, image_path)
+
+        print(new_image)
     
-    album = api.view_album()
+    # album = cloudinary_image_api.view_album()
     
-    return render_template('/profile/upload_file.php', image_url=image_url, album=album)
-
-@app.route('/profile/upload_file.php')
-def upload_image_to_profile():
-    """Upload images."""
-    
-    album = api.view_album()
-    
-    return redirect('/profile/', image_url=image_url, album=album)
+    return redirect('/')
 
 
 
 
 
-#
+
+
+
 
 #////////////////////////////////////////////////////Feed//////////////////////////////////////////////////
 

@@ -54,7 +54,7 @@ class Image(db.Model):
     date_posted = db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'<Image image_id={self.image_id} image_file={self.image_file} description={self.description} date_posted={self.date_posted}>'
+        return f'<Image image_id={self.image_id} image_path={self.image_path} description={self.description} date_posted={self.date_posted}>'
 
 
 class Reaction(db.Model):
