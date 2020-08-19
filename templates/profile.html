@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ user.username }}'s Profile{% endblock %}
+
+{% block body %}
+  <h1>Hello {{ user.first_name }}</h1>
+
+  <h2>profile</h2>
+  <ul>
+    <li><a href="/feed">View feed.</a></li>
+    <!-- <li><a href="/feed">View all users</a></li> -->
+  </ul>
+
+  <h2>Bio</h2>
+    <p>Lisa Frank, beloved artist of the '90s. Rainbows Galore.</p>
+
+  <h3>Upload Video/Photo Here</h3>
+    <div class="media-upload-form">
+      <form action="upload_file.php" method="post" id="media-upload-submit-form" enctype="multipart/form-data">
+        <br>
+        <input type="file" name="file" id="media-file">
+        <br>
+        <input type="submit" id="submit-media" name="submit" action="/profile">Upload</button>
+        <br>
+        <input type="text" name="image-title" id="image-title">Title
+        <br>
+        <br>
+        <textarea name="user-description" id="user-description"></textarea>Description
+        <br>
+      </form>
+    </div>
+      
+        <label for="file">Filename:</label>
+
+
+
+    <br>
+    <br>
+    <img src="/static/img/Lisa-Frank-Collage-Feature.jpg"></img>
+  
+  
+{% endblock %}

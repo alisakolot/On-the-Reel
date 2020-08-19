@@ -1,0 +1,13 @@
+scratchpad.txt
+
+profile.html 
+  <h3>Your Albums</h3>
+    <div class="media-library">
+      <p>
+        {% for image in image %}
+          {% for url in image %}
+            <img src={{ url }}>
+          {% endfor %}
+        {% endfor %}
+      </p>
+    </div>
