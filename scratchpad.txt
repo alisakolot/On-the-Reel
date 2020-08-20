@@ -1,5 +1,35 @@
 scratchpad.txt
 
+  <div class="media-library">
+    <p>
+      {% for img in images %}
+        {% for image_path in img %}
+        <img src={{ image_path }}>
+        {% endfor %}
+      {% endfor %}
+    </p>
+  </div>
+
+
+
+
+
+
+
+  
+
+Test Flask For loop
+
+<h3>Your Albums</h3>
+    <div class="media-library">
+      <p>
+        {% for img in images %}
+          <img src={{ img }}>
+        {% endfor %}
+      </p>
+    </div>
+
+Iterating through images to display on page
 profile.html 
   <h3>Your Albums</h3>
     <div class="media-library">
@@ -11,3 +41,16 @@ profile.html
         {% endfor %}
       </p>
     </div>
+
+Server Ideas to get images to display"
+ #Images to be seen in profile
+# @app.route('/profile')
+# def my_images(image_id):
+#     """View my images."""
+
+#     images = crud.get_image_by_id(image_id)
+#     print(images)
+
+#     return render_template('/feed.html', images=images)
+
+  

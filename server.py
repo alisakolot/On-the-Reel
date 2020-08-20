@@ -85,11 +85,15 @@ def logging_in_user():
     
     #getting the user object
     db_user = crud.get_username(username)
-
+    
+   
 
     print('******', db_user)
 
     if db_user is None: 
+        flash('Incorrect username/password, please try again.')
+        return redirect('/login')
+    if db_user.password != password:
         flash('Incorrect username/password, please try again.')
         return redirect('/login')
     else:
@@ -99,14 +103,7 @@ def logging_in_user():
 
 
 
-#////////////////////////////////////////////////////Profile//////////////////////////////////////////////////
-
-# @app.route('/profile', methods=['GET']) 
-# def display_user():
-#     """Display User Profile."""
-    
-
-#     return render_template('profile.html')
+#////////////////////////////////////////////////////Profile/user-id/////////////////////////////////////////
 
 
 
@@ -119,18 +116,23 @@ def show_user(user_id):
     
     return render_template('profile.html', user=user)
 
+
+#Sending Photos to cloudinary - DONT TOUCH THIS CODE. ##########################
 @app.route('/profile/<user_id>', methods=['POST'])
-def upload_images(user_id,):
+def upload_images(user_id):
     """Upload images to cloudinary."""
     image = request.files.get("file")
-    print(image)
+    
 
     # user_id = session.get('user_id')
     # print(user_id)
 
     if image:
-        image_link = cloudinary_image_api.upload_image(image)
-        image_path = image_link
+        image_path = cloudinary_image_api.upload_image(image)
+        # image_path = image_link
+        print("*******", image_path)
+
+
         #image link/path going into description
         # image_name = request.form.get("submit-media")
         
@@ -138,8 +140,10 @@ def upload_images(user_id,):
 
         new_image = crud.create_image(image_path, description)
     
-    return redirect('/')
+    return render_template('/', image_path=image_path)
 
+
+# ###################### DONT TOUCH THIS CODE ###################################
 
 
 
@@ -152,29 +156,44 @@ def upload_images(user_id,):
 
 #Images to be displayed in feed
 @app.route('/feed')
-def all_images():
+def all_image_urls():
     """View all images in feed."""
 
     images = crud.get_images()
-    print(images)
+    image_urls =  []
+
+
+    for image in images: 
+        image_urls.append(image.image_path)
+        
+    print(image_urls)
+    
 
     # album = cloudinary_image_api.view_album(images)
 
-    return render_template('/feed.html', images=images)
+    return render_template('/feed.html', image_urls=image_urls)
+
+@app.route('/feed')
+def all_images():
+    """View all images in feed."""
+
+    image_urls = crud.get_images_by_path()
+
+    # album = cloudinary_image_api.view_album(images)
+
+    return render_template('/feed.html', image_urls=image_urls)
+
 
 #////////////////////////////////////////////////////Videos//////////////////////////////////////////////////
 #TO BE SEEN IN PROFILE
-@app.route('/feed')
-def all_videos():
-    """View all videos."""
+# @app.route('/feed')
+# def all_videos():
+#     """View all videos."""
 
-    videos = crud.get_videos()
-    print(videos)
+#     videos = crud.get_videos()
+#     print(videos)
 
-    return render_template('/feed.html', videos=videos)
-
-
-
+#     return render_template('/feed.html', videos=videos)
 
 
 # @app.route('/feed/<video_id>')

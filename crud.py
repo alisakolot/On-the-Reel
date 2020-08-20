@@ -113,7 +113,8 @@ def get_username(username):
 def get_password(password):
     """Return password."""
     # import pdb; pdb.set_trace()
-    return User.query.filter(User.password == password).first()
+    return User.query.filter_by(User.password == password).first()
+    #specify user password 
 
 def get_firstname(first_name):
     """Return first name."""
@@ -162,12 +163,21 @@ def get_images():
 
     return Image.query.all()
 
+def get_images_by_path(image_path):
+    """Return all image paths/urls."""
+     
+    return Image.query.filter_by(image_path = image_path).all()
+
 
 def get_image_by_id(image_id):
     """Return a image by primary key."""
 
     return Image.query.get(image_id)
 
+def get_image_by_id_path(image_id, image_path):
+    """Return tuples of image id and image path."""
+
+    return Image.query(image_id, image_path).all()
 
 if __name__ == '__main__':
     from server import app
