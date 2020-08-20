@@ -7,14 +7,16 @@
   <h2>feed</h2>
     <p>Images and Videos go here. I don't know how or when but it will happen.</p>
 
-  <h3> {{ images }} </h3>
+  <!-- <h3> {{ images }} </h3> -->
  
 
   <h3>Your Albums</h3>
     <div class="media-library">
       <p>
         {% for img in images %}
-          <img src={{ img }}>
+          {% for url in img %}
+            <img src={{ img }}>
+          {% endfor %}
         {% endfor %}
       </p>
     </div>
