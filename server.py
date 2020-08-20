@@ -120,7 +120,7 @@ def show_user(user_id):
 
 @app.route('/profile/<user_id>', methods=['POST'])
 def upload_images(user_id,):
-    """Upload images."""
+    """Upload images to cloudinary."""
     image = request.files.get("file")
     print(image)
 
@@ -128,15 +128,16 @@ def upload_images(user_id,):
     print(user_id)
 
     if image:
-        image_path = cloudinary_image_api.upload_image(image)
-        print(image_path)
+        image_link = cloudinary_image_api.upload_image(image)
+  
+        #image link/path going into description
         # image_name = request.form.get("submit-media")
+        image_path = image_link
 
-        # image_description =  api
-        new_image = crud.create_image(user_id, image_path)
+        description = request.form.get("user-description")
 
-        print(new_image)
-    
+        new_image = crud.create_image(image_path, description)
+
     # album = cloudinary_image_api.view_album()
     
     return redirect('/')
@@ -151,6 +152,15 @@ def upload_images(user_id,):
 
 #////////////////////////////////////////////////////Feed//////////////////////////////////////////////////
 
+#Images to be displayed in profule
+@app.route('/feed')
+def all_images():
+    """View all images."""
+
+    images = crud.get_images()
+    print(images)
+
+    return render_template('/feed.html', images=images)
 
 #////////////////////////////////////////////////////Videos//////////////////////////////////////////////////
 #TO BE SEEN IN PROFILE
@@ -162,6 +172,9 @@ def all_videos():
     print(videos)
 
     return render_template('/feed.html', videos=videos)
+
+
+
 
 
 # @app.route('/feed/<video_id>')
