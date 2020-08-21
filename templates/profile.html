@@ -12,7 +12,7 @@
   </ul>
 
   <h2>Bio</h2>
-    <p>Lisa Frank, beloved artist of the '90s. Rainbows Galore.</p>
+    <p>User Bio.</p>
 
   <h3>Upload Video/Photo Here</h3>
     <div class="media-upload-form">
@@ -36,7 +36,15 @@
 
     <br>
     <br>
-    <img src="/static/img/Lisa-Frank-Collage-Feature.jpg"></img>
+
+    <div class="media-library">
+      <p>
+        {% for img in image_urls %}
+          <img src={{ img }}>
+        {% endfor %}
+      </p>
+    </div>
+
 
 
   
