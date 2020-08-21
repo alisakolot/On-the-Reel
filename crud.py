@@ -8,7 +8,7 @@ import sample_users
 from flask import Flask
 app = Flask(__name__)
 
-os.system('createdb alisadb')
+os.system('createdb alisadb2')
 
 model.connect_to_db(app)
 model.db.create_all()
@@ -24,26 +24,10 @@ def create_user(first_name, last_name, username, email, password):
 
     return user
 
-# def create_username(username):
-#     """Create new username."""
-
-#     username = User(username=username)
-
-#     db.session.add(username)
-#     db.session.commit()
-
-#     return username
 
 #users::users
 #ratings::reacts
 #movies::videos
-
-# def create_names(first_name, last_name):
-#     """Create user first/last names."""
-#     names = User(first_name=first_name, last_name=last_name)
-
-#     db.session.add(names)
-#     db.session.commit()
 
 
 
@@ -57,9 +41,24 @@ def create_video(video_path, description, date_posted):
 
     return video
 
+# def create_image(image_path, description, user_id):
+#     """Create new video (info)."""
+#     #BRING BACK DATE_POSTED
+#     #ADD USER ID
+
+#     image = Image(image_path=image_path, description=description, user_id=user_id)
+
+#     db.session.add(image)
+#     db.session.commit()
+
+#     return image
+
+#TEST NO USER ID 
+
 def create_image(image_path, description):
     """Create new video (info)."""
     #BRING BACK DATE_POSTED
+    #ADD USER ID
 
     image = Image(image_path=image_path, description=description)
 
@@ -178,6 +177,11 @@ def get_image_by_id_path(image_id, image_path):
     """Return tuples of image id and image path."""
 
     return Image.query(image_id, image_path).all()
+
+#def get_image_by_user_id(user_id):
+    """Return user id corresponding to image id."""
+
+    #return Image.query.get(user_id)
 
 if __name__ == '__main__':
     from server import app

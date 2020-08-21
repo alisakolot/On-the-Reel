@@ -10,13 +10,24 @@ scratchpad.txt
     </p>
   </div>
 
+Dom manipulation w/ jquery:
+
+  $(document).ready(function(){
+    $.get('/api/get-all-categories', (res) => {       
+                    console.log(res);
+                    for(const key in res){
+                        $("#category").append("<option value='"+res[key].category_id+"'>"+res[key].category_name+"</option>");
+                    }
+      });
+  }); when page loads I am sending get request to get all categories and appending as select options. #categery is id of select tag. 
 
 
 
 
 
 
-  
+
+
 
 Test Flask For loop
 

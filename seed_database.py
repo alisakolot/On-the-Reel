@@ -11,8 +11,8 @@ import server
 
 import sample_users
 
-# os.system('dropdb alisadb')
-# os.system('createdb alisadb')
+os.system('dropdb alisadb2')
+os.system('createdb alisadb2')
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -30,23 +30,19 @@ for video in sample_users.v:
 
     videos_in_db.append(db_video)
 
+
+# images_in_db = []
+# # for image in sample_data:
+# # for image in sample_users.i:
+# image_path, description, user_id= (image.image_path,
+#                                 image.description, image.user_id)
+#                                 #BRING BACK DATE POSTEDß
+
+# db_image = crud.create_image(image_path, description, user_id)
+
+# images_in_db.append(db_image)
+
 users_list = []
-
-
-images_in_db = []
-# for image in sample_data:
-for image in sample_users.i:
-    image_path, description, date_posted = (image.image_path,
-                                    image.description, image.date_posted)
-
-    db_image = crud.create_image(image_path, description, date_posted)
-
-    images_in_db.append(db_image)
-
-users_list = []
-
-
-
 
 
 
@@ -70,14 +66,6 @@ for _ in range(5):
     crud.create_reaction(random_user, reaction, video=random_video)
 
 
-'''Assigning a reaction number to an image.'''
-for _ in range(5):
-    random_image = choice(images_in_db)
-    reaction = randint(1, 5) #similar to rating format, each reaction number will represent img/like
-
-    random_user = choice(users_list)
-
-    crud.create_reaction(random_user, reaction, image=random_image)
 
 """Creating 'following' relationship"""
 # Create following relationship: 
@@ -96,7 +84,22 @@ for user in users_list:
 
     else:
         continue
-        
+
+u1 = choice(users_list)
+u2 = choice(users_list)
     
-    
-    
+i1 = model.Image(image_path="path string1", description= "ABCD", date_posted=datetime.now(), user=u1)
+i2 =  model.Image(image_path="pathstring2", description = "EFGH", date_posted=datetime.now(), user=u2)
+images_in_db = [i1, i2]
+model.db.session.add(i1, i2)
+model.db.session.commit()
+
+
+'''Assigning a reaction number to an image.'''
+for _ in range(5):
+    random_image = choice(images_in_db)
+    reaction = randint(1, 5) #similar to rating format, each reaction number will represent img/like
+
+    random_user = choice(users_list)
+
+    crud.create_reaction(random_user, reaction, image=random_image)

@@ -97,7 +97,6 @@ def logging_in_user():
         flash('Incorrect username/password, please try again.')
         return redirect('/login')
     else:
-        print('/login_user', f'/profile/{db_user.user_id}' )
         return redirect(f'/profile/{db_user.user_id}')
 
 
@@ -121,56 +120,31 @@ def show_user(user_id):
 @app.route('/profile/<user_id>', methods=['POST'])
 def upload_images(user_id):
     """Upload images to cloudinary."""
+
     image = request.files.get("file")
     
-
-    # user_id = session.get('user_id')
-    # print(user_id)
-
     if image:
         image_path = cloudinary_image_api.upload_image(image)
-
-        print("*******", image_path)
-
 
         #image link/path going into description
         # image_name = request.form.get("submit-media")
         
         description = request.form.get("user-description")
 
+        # user = crud.get_user_by_id(user_id)
+        # user = user_id
+
+
         new_image = crud.create_image(image_path, description)
     
     return redirect('/feed') #<= THIS IS A TEST. WE NEED IT TO REDIRECT TO THE PROFILE PAGE WITH MORE PHOTOS
 
 
-#USER SEES ALL FEED. THIS IS A TEST RUN.
-@app.route('/feed')
-def all_image_urls():
-    """View all images in feed."""
-
-    images = crud.get_images()
-    image_urls =  []
-
-
-    for image in images: 
-        image_urls.append(image.image_path)
-        
-    print(image_urls)
-    
-
-    # album = cloudinary_image_api.view_album(images)
-
-    return render_template('/feed.html', image_urls=image_urls)
-
-
-
 # ###################### DONT TOUCH THIS CODE ###################################
 
 # Display images to user on page
-# @app.route('/profile/<user_id>')
+# @app.route('/profile/<username>')
 #make a loop for user image in profile.html
-
-
 
 
 
@@ -189,12 +163,8 @@ def all_image_urls():
     for image in images: 
         image_urls.append(image.image_path)
         
-    print(image_urls)
-    
 
-    # album = cloudinary_image_api.view_album(images)
-
-    return render_template('/feed.html', image_urls=image_urls)
+    return render_template('feed.html', image_urls=image_urls)
 
 
 

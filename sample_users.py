@@ -7,9 +7,10 @@ from datetime import datetime
 
 
 # #Users
-# s = User(username="Suzie", email="email", password="password")
-# c = User(username="Cheese", email="eeemail", password="pppassword")
-# j = User(username="Jasmine", email="email1", password="password1")
+s = User(username="Suzie", email="email", password="password")
+c = User(username="Cheese", email="eeemail", password="pppassword")
+j = User(username="Jasmine", email="email1", password="password1")
+
 
 
 # #Videos
@@ -21,10 +22,10 @@ v = [v1, v2]
 
 # Images
 
-i1 = Image(image_path="path string1", description= "ABCD", date_posted=datetime.now())
-i2 =  Image(image_path="pathstring2", description = "EFGH", date_posted=datetime.now())
+# i1 = Image(image_path="path string1", description= "ABCD", date_posted=datetime.now(), user=)
+# i2 =  Image(image_path="pathstring2", description = "EFGH", date_posted=datetime.now(), user=c)
 
-i = [i1, i2]
+# i = [i1, i2]
 
 # #Reactions
 # r1 = Reaction(video=v1, user=s)

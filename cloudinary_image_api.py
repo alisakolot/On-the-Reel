@@ -31,13 +31,6 @@ def upload_image(image):
     return image_path
 
 
-# def view_album():
-#     """Send url to server => feed."""
-#     if image:
-#         response = cloudinary.uploader.upload(image)
-#         image_path = response['secure_url']
-    
-#     return image_path
 
 
 if __name__== '__main__':

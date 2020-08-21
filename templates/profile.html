@@ -4,6 +4,7 @@
 
 {% block body %}
   <h1>Hello {{ user.first_name }}</h1>
+  
 
   <h2>profile</h2>
   <ul>
@@ -37,13 +38,7 @@
     <br>
     <br>
 
-    <div class="media-library">
-      <p>
-        {% for img in image_urls %}
-          <img src={{ img }}>
-        {% endfor %}
-      </p>
-    </div>
+
 
 
 

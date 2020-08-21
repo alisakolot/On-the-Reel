@@ -53,8 +53,12 @@ class Image(db.Model):
     description = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
 
+    #describing relationship between user and image: user uploads an image
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user = db.relationship('User', foreign_keys = user_id, backref="image") 
+
     def __repr__(self):
-        return f'<Image image_id={self.image_id} image_path={self.image_path} description={self.description} date_posted={self.date_posted}>'
+        return f'<Image image_id={self.image_id} image_path={self.image_path} description={self.description} date_posted={self.date_posted} user_id={self.user_id}>'
 
 
 class Reaction(db.Model):
@@ -112,7 +116,7 @@ class Following(db.Model):
         return f'<Following subscriber_id={self.subscriber_id} creator_id={self.creator_id}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///alisadb', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///alisadb2', echo=True):
     #alisadb corresponds to database that will exist, how you are connecting to database 
 
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
