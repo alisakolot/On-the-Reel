@@ -182,10 +182,10 @@ def get_image_by_id_path(image_id, image_path):
 
     return Image.query(image_id, image_path).all()
 
-#def get_image_by_user_id(user_id):
+def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
-    #return Image.query.get(user_id)
+    return Image.query.filter_by(user_id = user_id).all()
 
 if __name__ == '__main__':
     from server import app

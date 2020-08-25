@@ -124,52 +124,47 @@ def upload_images(user_id):
 
     image = request.files.get("file")
     
-    # #get the user id
-    # user_id = request.args.get("user_id")
-    # print(">>>>>>>>>>>>>>>>>>>>>", user_id)
-    # # return None
-
-    #getting the user id using CRUD 
-    # user = crud.get_user_by_id(user_id)
-    # print(">>>>>>>>>>>>>>>>>>>>>", user)
-    # user_id=user
-    # print(user_id)
-    #Error: WHERE users.user_id = %(param_1)s]
-        # [parameters: {'param_1': 'upload_file.php'}]
-    #uncomment line 127: None, user.user_id IS NULL 
-
-
-
     #getting the user id using session
-    # session['user_id'] = users[user_id]
     user_id = session.get('user_id')
     print('>>>>>>>>>>> THIS IS THE USER_ID', user_id)
-
- 
-    
-
 
     if image:
         image_path = cloudinary_image_api.upload_image(image)
 
         description = request.form.get("user-description")
         print(">>>>>", description)
-
-        # user = crud.get_user_by_id(user_id)
-        # # print(">>>>>>>>>>>>>>>>>>>>>", user)
-        # user_id=user
-
     
         new_image = crud.create_image(image_path, description, user_id)
     
-    return redirect('/feed') #<= THIS IS A TEST. WE NEED IT TO REDIRECT TO THE PROFILE PAGE WITH MORE PHOTOS
-
+    return redirect(f'/profile/{user_id}') 
+    
 
 # ###################### DONT TOUCH THIS CODE ###################################
 
 # Display images to user on page
-# @app.route('/profile/<username>')
+@app.route('/profile/<username>')
+def display_user_images(user_id):
+    """View images that user uploaded."""
 #make a loop for user image in profile.html
+
+    #1. get image by user id from crud
+    #2. make an empty list
+    #3. write a for loop from using #1
+    #4. append the image to list
+
+    user_id_n = session.get('user_id')
+    print('>>>>>>>>>>>>>>', user_id_n)
+
+    image_by_user_id = crud.get_image_by_user_id(user_id_n)
+    print('>>>>>>>>>>>>>', image_by_user_id)
+
+    user_images = []
+    for image in image_by_user_id:
+        user_images.append(image.user_id)
+    print('>>>>>>>>>>>>>>', user_images)
+
+
+    return render_template('feed.html', user_images=user_images)
 
 
 

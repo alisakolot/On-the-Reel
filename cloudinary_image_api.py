@@ -11,6 +11,7 @@ import cloudinary.api
 
 app = Flask(__name__)
 
+
 cloud_name = os.environ["CLOUD_NAME"]
 cloudinary_api_key = os.environ["API_KEY"]
 cloudinary_api_secret = os.environ["API_SECRET"]
