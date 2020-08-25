@@ -41,31 +41,31 @@ def create_video(video_path, description, date_posted):
 
     return video
 
-# def create_image(image_path, description, user_id):
-#     """Create new video (info)."""
-#     #BRING BACK DATE_POSTED
-#     #ADD USER ID
-
-#     image = Image(image_path=image_path, description=description, user_id=user_id)
-
-#     db.session.add(image)
-#     db.session.commit()
-
-#     return image
-
-#TEST NO USER ID 
-
-def create_image(image_path, description):
+def create_image(image_path, description, user_id):
     """Create new video (info)."""
     #BRING BACK DATE_POSTED
     #ADD USER ID
 
-    image = Image(image_path=image_path, description=description)
+    image = Image(image_path=image_path, description=description, user_id=user_id)
 
     db.session.add(image)
     db.session.commit()
 
     return image
+
+#TEST NO USER ID 
+
+# def create_image(image_path, description):
+#     """Create new video (info)."""
+#     #BRING BACK DATE_POSTED
+#     #ADD USER ID
+
+#     image = Image(image_path=image_path, description=description)
+
+#     db.session.add(image)
+#     db.session.commit()
+
+#     return image
 
 
 
@@ -103,6 +103,10 @@ def create_following(subscriber, creator):
 
 #///////////////////////////////////// Get User Profile Info/////////////////////////
 
+def get_users():
+    """Return all users."""
+
+    return User.query.all()
 
 def get_username(username):
     """Return username."""

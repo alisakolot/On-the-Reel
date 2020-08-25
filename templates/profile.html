@@ -4,7 +4,7 @@
 
 {% block body %}
   <h1>Hello {{ user.first_name }}</h1>
-  
+  <p name="user_id" id={{ user.user_id }}></p>
 
   <h2>profile</h2>
   <ul>
@@ -29,7 +29,7 @@
         <textarea name="user-description" id="user-description"></textarea>Description
         <br>
       </form>
-    </div>
+
       
         <label for="file">Filename:</label>
 

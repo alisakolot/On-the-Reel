@@ -22,6 +22,7 @@ cloudinary.config(
 )
 
 
+
 def upload_image(image):
     """Upload image to cloudinary and return url."""
     if image:
@@ -29,6 +30,10 @@ def upload_image(image):
         image_path = response['secure_url']
     
     return image_path
+
+# profile_user_id
+#something inside the response secure_url
+
 
 
 

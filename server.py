@@ -97,6 +97,7 @@ def logging_in_user():
         flash('Incorrect username/password, please try again.')
         return redirect('/login')
     else:
+        session['user_id'] = db_user.user_id
         return redirect(f'/profile/{db_user.user_id}')
 
 
@@ -123,19 +124,43 @@ def upload_images(user_id):
 
     image = request.files.get("file")
     
+    # #get the user id
+    # user_id = request.args.get("user_id")
+    # print(">>>>>>>>>>>>>>>>>>>>>", user_id)
+    # # return None
+
+    #getting the user id using CRUD 
+    # user = crud.get_user_by_id(user_id)
+    # print(">>>>>>>>>>>>>>>>>>>>>", user)
+    # user_id=user
+    # print(user_id)
+    #Error: WHERE users.user_id = %(param_1)s]
+        # [parameters: {'param_1': 'upload_file.php'}]
+    #uncomment line 127: None, user.user_id IS NULL 
+
+
+
+    #getting the user id using session
+    # session['user_id'] = users[user_id]
+    user_id = session.get('user_id')
+    print('>>>>>>>>>>> THIS IS THE USER_ID', user_id)
+
+ 
+    
+
+
     if image:
         image_path = cloudinary_image_api.upload_image(image)
 
-        #image link/path going into description
-        # image_name = request.form.get("submit-media")
-        
         description = request.form.get("user-description")
+        print(">>>>>", description)
 
         # user = crud.get_user_by_id(user_id)
-        # user = user_id
+        # # print(">>>>>>>>>>>>>>>>>>>>>", user)
+        # user_id=user
 
-
-        new_image = crud.create_image(image_path, description)
+    
+        new_image = crud.create_image(image_path, description, user_id)
     
     return redirect('/feed') #<= THIS IS A TEST. WE NEED IT TO REDIRECT TO THE PROFILE PAGE WITH MORE PHOTOS
 
