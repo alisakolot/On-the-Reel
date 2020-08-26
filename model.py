@@ -55,7 +55,7 @@ class Image(db.Model):
 
     #describing relationship between user and image: user uploads an image
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User', foreign_keys = user_id, backref="image") 
+    user = db.relationship('User', foreign_keys = user_id, backref="images") 
 
     def __repr__(self):
         return f'<Image image_id={self.image_id} image_path={self.image_path} description={self.description} date_posted={self.date_posted} user_id={self.user_id}>'

@@ -29,9 +29,15 @@
         <textarea name="user-description" id="user-description"></textarea>Description
         <br>
       </form>
-
-      
-        <label for="file">Filename:</label>
+   
+  <div class="media-library">
+    <p>
+      {% for img in user.images %}
+        <img src="{{ img.image_path }}"/>
+      {% endfor %}
+    </p>
+  </div>
+    
 
 
     {% endblock %}

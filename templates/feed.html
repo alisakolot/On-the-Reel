@@ -6,13 +6,19 @@
   <h1></h1>
 
   <h2>feed</h2>
-    <p>Images and Videos go here. I don't know how or when but it will happen.</p>
+    <p>MEDIA</p>
 
-  <h3> {{ image_urls }} </h3>
   <div class="media-library">
     <p>
-      {% for img in image_urls %}
-      <div><img src={{ img }}></div>
+      {% for img in images %}
+      <div><img src="{{ img.image_path }}"></div>
+      Image Id: {{ img.image_id }}
+      Description: {{ img.description }}
+      <input type="radio" id="reaction-1" name="emoji-1" value="1">1
+      <input type="radio" id="reaction-2" name="emoji-2" value="2">2
+      <input type="radio" id="reaction-3" name="emoji-3" value="3">3
+      <input type="radio" id="reaction-4" name="emoji-4" value="4">4
+      <input type="radio" id="reaction-5" name="emoji-5" value="5">5
       {% endfor %}
     </p>
   </div>

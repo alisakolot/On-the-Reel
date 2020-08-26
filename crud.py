@@ -2,16 +2,12 @@
 
 from model import db, User, Video, Image, Following, Reaction, connect_to_db
 
-import model
 import os
 import sample_users
 from flask import Flask
-app = Flask(__name__)
 
-os.system('createdb alisadb2')
 
-model.connect_to_db(app)
-model.db.create_all()
+# os.system('createdb alisadb2')
 
 
 def create_user(first_name, last_name, username, email, password):
@@ -169,7 +165,7 @@ def get_images():
 def get_images_by_path(image_path):
     """Return all image paths/urls."""
      
-    return Image.query.filter_by(image_path = image_path).all()
+    return Image.query.filter_by(Image.image_path == image_path).all()
 
 
 def get_image_by_id(image_id):
@@ -185,7 +181,8 @@ def get_image_by_id_path(image_id, image_path):
 def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
-    return Image.query.filter_by(user_id = user_id).all()
+    return Image.query.filter_by(user_id == user_id).all()
+    
 
 if __name__ == '__main__':
     from server import app
