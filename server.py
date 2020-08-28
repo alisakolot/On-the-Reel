@@ -141,31 +141,6 @@ def upload_images(user_id):
 
 
 
-# Display images to user on page
-# @app.route('/profile/<user_id>')
-# def display_user_images(user_id):
-#     """View images that user uploaded."""
-
-    # user_id = session.get('user_id')
-    # print(user_id)
-
-
-    # image_by_user_id = crud.get_image_by_user_id(user_id)
-    # print('>>>>>>>>>>>>>', image_by_user_id)
-
-    # user_images = []
-    # for image in image_by_user_id:
-    #     user_images.append(image.user_id)
-    # print('>>>>>>>>>>>>>>', user_images)
-
-
-    # return render_template(f"/profile/{user_id}")
-    # return render_template((f'/profile/{user_id}', image_by_user_id=image_by_user_id)
-    #'dashboard.html', user=user
-
-
-
-
 #////////////////////////////////////////////////////Feed//////////////////////////////////////////////////
 
 #Images to be displayed in feed
@@ -210,17 +185,52 @@ def all_image_urls():
 
 #     return jsonify({"values" : True })
 
-@app.route('/feed.json')
-def get_reaction_value():
+# @app.route('/feed.json')
+# def get_like_value():
 
-    reaction_val = request.args.get("reaction_val")
+#     reaction_val = request.args.get("reaction_val")
 
-    print('*************',  reaction_val, '********')
+#     print('*************',  reaction_val, '********')
     
-    return jsonify({"values" : True })
+#     return jsonify({"values" : True })
 
+@app.route('/feed.json', methods=['GET'])
+def like_button():
+    """Like button."""
+
+    #get reaction 1:
+    like_button = request.args.get("likes_val")
+    print('*************',  like_button, '********')
+
+
+    # image_id = session.get('image_id')
+    # print('*************',  image_id, '********')
+
+    #add to crud
+    # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
+    
+    return jsonify({"likes" : True })
+
+
+#//////////////////////////////////////////Following/////////////////////////
 
     
+@app.route('/follow/feed.json', methods=['GET'])
+def following():
+    """Like button."""
+
+    #get reaction 1:
+    like_button = request.args.get("likes_val")
+    print('*************',  like_button, '********')
+
+
+    # image_id = session.get('image_id')
+    # print('*************',  image_id, '********')
+
+    #add to crud
+    # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
+    
+    return jsonify({"likes" : True })
 
 
 

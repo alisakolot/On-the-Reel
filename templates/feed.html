@@ -30,16 +30,41 @@
           <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=4>4
           <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=5>5
         </form> -->
-          <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
 
-          <script>
-          function myFunction(x) {
-            x.classList.toggle("fa-thumbs-down");
-          }
-          </script>
           
+          <section class="likes" >
+            <button id="likes" value=1 method=POST action='/feed'>Like
+              <i onclick="myFunction(this)" class="fa fa-thumbs-up" id="like-button"></i>
+              <script>
+              function myFunction(x) {
+                x.classList.toggle("fa-thumbs-down");}
+              </script>
+            </button>
 
+            <section class="smiley" >
+              <button id="smiley" value=2 method=POST action='/feed'>:)</button>
+            </section>
+
+            <section class="laughter" >
+              <button id="laughter" value=3 method=POST action='/feed'>xD</button>
+            </section>
+
+            <section class="Meh" >
+              <button id="meh" value=4 method=POST action='/feed'>:/</button>
+            </section>
+
+            <section class="Angry" >
+              <button id="angry" value=5 method=POST action='/feed'>:C</button>
+            </section>
+        </section>
         </div>
+
+        <section class="follow-button">
+          <button id="follow-button" method=POST action='/follow/feed'>Follow 
+          </button>
+
+        </section>
+
 
       {% endfor %}
     
