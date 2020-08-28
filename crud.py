@@ -173,15 +173,15 @@ def get_image_by_id(image_id):
 
     return Image.query.get(image_id)
 
-def get_image_by_id_path(image_id, image_path):
-    """Return tuples of image id and image path."""
+# def get_image_reactions(image_id, user_id):
+#     """Return tuples of image id and image path."""
 
-    return Image.query(image_id, image_path).all()
+#     return Image.query.filter_by(image_id, user_id).all()
 
 def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
-    return Image.query.filter_by(user_id).first()
+    return Image.query.filter_by(user_id).all()
     
 
 if __name__ == '__main__':

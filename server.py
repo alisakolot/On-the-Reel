@@ -86,9 +86,8 @@ def logging_in_user():
     #getting the user object
     db_user = crud.get_username(username)
     
-   
-
     print('******', db_user)
+
 
     if db_user is None: 
         flash('Incorrect username/password, please try again.')
@@ -158,15 +157,18 @@ def all_image_urls():
 
     return render_template('feed.html', images=images)
 
-#Send reaction to database
-# @app.route('/feed', methods=['GET'])
-# def send_reaction():
-#     """Send reaction to db."""
+@app.route('/feed')
+def logged_in_user():
+    """Information of user browsing feed."""
+
+    #making sure that the user info is in session
+    # session['user_id'] = db_user.user_id
+
+    user_id = session['user_id'] #will overwrite the previous session when a new user(info) is in session
     
-#     request.args.get("emoji-{{ img.image_id }}")
-#     reaction = crud.create_reaction()
-    
-#     return redirect('feed.html')
+    print(">>>>>>>>>>>", user_id)
+    return user_id
+
 
 #Get reaction value as JSON
 # @app.route('/feed.json')
@@ -198,19 +200,22 @@ def all_image_urls():
 def like_button():
     """Like button."""
 
-    #get user id
-    user_id = request.args.get("follows")
-    print('*************', user_id, '********')
-
     #get reaction 1:
     like_button = request.args.get("likes_val")
-    print('*************',  like_button, '********')
-
-    #get image id:
     
-    # image_id = session.get('image_id')
-    # print('*************',  image_id, '********')
 
+    #subscriber/viewer id
+    user_id = session['user_id'] #will overwrite the previous session when a new user(info) is in session
+    user = crud.get_user_by_id(user_id)
+ 
+    
+    #get image id:
+    image_id = request.args.get("image_session")
+    # image_reactions = crud.get_image_reactions(image_id, user_id)
+    # print('*************',  image_id, image_reactions, '********')
+    
+    print("REACTION BUTTON:", like_button)
+    print('GET IMAGE ID FROM JS:', image_id, '********')
     #add to crud
     # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
     
@@ -226,14 +231,16 @@ def following():
 
 
     #get creator id
-    user_id = request.args.get("follows")
-    print('*************', user_id, '********')
+    creator = request.args.get("follows")
+    print('CREATOR ID:', creator, '********')
 
     #get subscriber id 
 
     #find a way to check if a user is logged in on feed
     #if logged in, then can commit to db
     #else "please log in" msg
+    subscriber = session['user_id'] 
+    print('SUBSCRIBER ID:', subscriber, '********')
 
 
 

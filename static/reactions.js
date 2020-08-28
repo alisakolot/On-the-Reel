@@ -30,53 +30,58 @@
 
 //Reactions/Like buttons: 
 
-$('.likes').on('click', (evt) => {
+$('.reaction-button').on('click', (evt) => {
   const btn = evt.target;
-  console.log(evt.target)
+  console.log(evt.target);
+  console.log(evt.target.id);
+  console.log(evt.target.parentNode);
+  console.log(evt.target.parentNode.parentNode.id);
 
-  if (btn.innerText === 'Like') {
-    btn.innerText = 'Dislike';
-    console.log(btn.innerText)
-  } else {
-    // btn.innerText = 'Like';
+  // if (btn.innerText === 'Like') {
+  //   btn.innerText = 'Dislike';
+  //   console.log(btn.innerText)
+  // } else {
+  //   // btn.innerText = 'Like';
+  //   btn.disabled = true;
+  //   console.log(btn.innerText)
+  // }
+
+  // if (btn.innerText === ':)') {
+  //   btn.innerText = ':)';
+  //   console.log(btn.innerText)
+  // } else {
+  //   btn.disabled = true;
+  //   console.log(btn.innerText)
+  // }
+
+  // if (btn.innerText === 'xD') {
+  //   btn.innerText = 'xD';
+  //   console.log(btn.innerText)
+  // } else {
+  //   btn.disabled = true;
+  //   console.log(btn.innerText)
+  // }
+
+  // if (btn.innerText === ':/') {
+  //   btn.innerText = ':/';
+  //   console.log(btn.innerText)
+  // } else {
+  //   btn.disabled = true;
+  //   console.log(btn.innerText)
+  // }
+
+  // if (btn.innerText === ':C') {
+  //   btn.innerText = ':C';
+  //   console.log(btn.innerText)
+
+  // } else {
     btn.disabled = true;
     console.log(btn.innerText)
-  }
+  // }
 
-  if (btn.innerText === ':)') {
-    btn.innerText = ':)';
-    console.log(btn.innerText)
-  } else {
-    btn.disabled = true;
-    console.log(btn.innerText)
-  }
 
-  if (btn.innerText === 'xD') {
-    btn.innerText = 'xD';
-    console.log(btn.innerText)
-  } else {
-    btn.disabled = true;
-    console.log(btn.innerText)
-  }
-
-  if (btn.innerText === ':/') {
-    btn.innerText = ':/';
-    console.log(btn.innerText)
-  } else {
-    btn.disabled = true;
-    console.log(btn.innerText)
-  }
-
-  if (btn.innerText === ':C') {
-    btn.innerText = ':C';
-    console.log(btn.innerText)
-  } else {
-    btn.disabled = true;
-    console.log(btn.innerText)
-  }
+    const formInput = {likes_val : $(evt.target).val(), image_session : $(evt.target.parentNode.parentNode.id).val()};
     
-    const formInput = {likes_val : $(evt.target).val()};
-
   $.get('/feed.json', formInput, (res) => {
         alert('sent to server')
   
@@ -84,7 +89,25 @@ $('.likes').on('click', (evt) => {
 
 });
 
-//get image id
+
+
+
+//Get Image Id
+
+$('.image-id').on('click', (evt) => {
+  const btn = evt.target;
+
+  const formInput = {image_id : $(evt.target).val()};
+    
+  $.get('/feed.json', formInput, (res) => {
+        alert('sent img id')
+  
+  });
+
+});
+
+// let imagePath = $('#image_path').html(`${res.user_id}`);
+  // console.log(imagePath) 
 
 
 
@@ -105,16 +128,14 @@ $('.follow-button').on('click', (evt) => {
     btn.disabled = true;
     console.log(btn.innerText)
   }
+  
 
-  // let imagePath = $('.image-path')
-  //   console.log(imagePath)
   const formInput = {follows : $(evt.target).val()};
 
   $.get('/follow/feed.json', formInput, (res) => {
-        alert('sent to server')
-  
+      alert('sent to server')
+      
   });
-
 });
 
 
