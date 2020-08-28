@@ -181,7 +181,7 @@ def get_image_by_id_path(image_id, image_path):
 def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
-    return Image.query.filter_by(user_id == user_id).all()
+    return Image.query.filter_by(user_id).first()
     
 
 if __name__ == '__main__':

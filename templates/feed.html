@@ -19,7 +19,7 @@
       <div><img src="{{ img.image_path }}"></div>
       
       <div class="media-library">
-
+        
         Image Id: {{ img.image_id }}
         Description: {{ img.description }}
         User id: {{ img.user_id }}
@@ -56,13 +56,13 @@
             <section class="Angry" >
               <button id="angry" value=5 method=POST action='/feed'>:C</button>
             </section>
+
+            <div class="image-path" id="{{ img.image_id }}"></div> 
         </section>
         </div>
 
         <section class="follow-button">
-          <button id="follow-button" method=POST action='/follow/feed'>Follow 
-          </button>
-
+          <button id="follow-button" method=POST action='/follow/feed' value='{{ img.user_id }}'>Follow </button>
         </section>
 
 

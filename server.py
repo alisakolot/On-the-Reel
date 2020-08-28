@@ -198,11 +198,16 @@ def all_image_urls():
 def like_button():
     """Like button."""
 
+    #get user id
+    user_id = request.args.get("follows")
+    print('*************', user_id, '********')
+
     #get reaction 1:
     like_button = request.args.get("likes_val")
     print('*************',  like_button, '********')
 
-
+    #get image id:
+    
     # image_id = session.get('image_id')
     # print('*************',  image_id, '********')
 
@@ -217,20 +222,27 @@ def like_button():
     
 @app.route('/follow/feed.json', methods=['GET'])
 def following():
-    """Like button."""
-
-    #get reaction 1:
-    like_button = request.args.get("likes_val")
-    print('*************',  like_button, '********')
+    """Follow button."""
 
 
-    # image_id = session.get('image_id')
-    # print('*************',  image_id, '********')
+    #get creator id
+    user_id = request.args.get("follows")
+    print('*************', user_id, '********')
 
-    #add to crud
-    # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
+    #get subscriber id 
+
+    #find a way to check if a user is logged in on feed
+    #if logged in, then can commit to db
+    #else "please log in" msg
+
+
+
+
+    #add to crud: follows
+
+    #create_following(subscriber, creator)
     
-    return jsonify({"likes" : True })
+    return jsonify({"follows" : True })
 
 
 

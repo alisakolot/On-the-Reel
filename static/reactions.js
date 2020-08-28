@@ -74,7 +74,7 @@ $('.likes').on('click', (evt) => {
     btn.disabled = true;
     console.log(btn.innerText)
   }
-
+    
     const formInput = {likes_val : $(evt.target).val()};
 
   $.get('/feed.json', formInput, (res) => {
@@ -93,7 +93,6 @@ $('.likes').on('click', (evt) => {
 
 
 
-
 // Follow Button:
 $('.follow-button').on('click', (evt) => {
   const btn = evt.target;
@@ -103,11 +102,13 @@ $('.follow-button').on('click', (evt) => {
     btn.innerText = 'Unfollow';
     console.log(btn.innerText)
   } else {
-    // btn.innerText = 'Like';
     btn.disabled = true;
     console.log(btn.innerText)
   }
-  const formInput = {likes_val : $(evt.target).val()};
+
+  // let imagePath = $('.image-path')
+  //   console.log(imagePath)
+  const formInput = {follows : $(evt.target).val()};
 
   $.get('/follow/feed.json', formInput, (res) => {
         alert('sent to server')
@@ -117,7 +118,8 @@ $('.follow-button').on('click', (evt) => {
 });
 
 
-// 
+
+
 
 
 
