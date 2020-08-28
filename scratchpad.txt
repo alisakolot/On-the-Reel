@@ -1,5 +1,38 @@
 scratchpad.txt
 
+Form for reactions: 
+
+  <div class="media-library">
+    <p>
+      {% for img in images %}
+      <div><img src="{{ img.image_path }}"></div>
+      Image Id: {{ img.image_id }}
+      Description: {{ img.description }}
+      <form name="emoji-{{ img.image_id }}" action="/feed" method="POST" required>>
+        <input type="radio" id="reaction-1" value=1>1
+        <input type="radio" id="reaction-2" value=2>2
+        <input type="radio" id="reaction-3" value=3>3
+        <input type="radio" id="reaction-4" value=4>4
+        <input type="radio" id="reaction-5" value=5>5
+      </form>
+
+      {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="media-library">
     <p>
       {% for img in images %}

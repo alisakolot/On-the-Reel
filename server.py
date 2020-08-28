@@ -1,7 +1,7 @@
 """Server for Video/Image app."""
 
 from flask import (Flask, render_template, request, flash, session,
-                redirect)
+                redirect, jsonify)
 from model import connect_to_db
 import crud
 
@@ -117,7 +117,7 @@ def show_user(user_id):
     return render_template('profile.html', user=user)
 
 
-#Sending Photos to cloudinary - DONT TOUCH THIS CODE. ##########################
+#Sending Photos to cloudinary 
 @app.route('/profile/<user_id>', methods=['POST'])
 def upload_images(user_id):
     """Upload images to cloudinary."""
@@ -139,7 +139,7 @@ def upload_images(user_id):
     return redirect(f'/profile/{user_id}') 
     
 
-# ###################### DONT TOUCH THIS CODE ###################################
+
 
 # Display images to user on page
 # @app.route('/profile/<user_id>')
@@ -183,27 +183,36 @@ def all_image_urls():
 
     return render_template('feed.html', images=images)
 
+#Send reaction to database
+# @app.route('/feed', methods=['GET'])
+# def send_reaction():
+#     """Send reaction to db."""
+    
+#     request.args.get("emoji-{{ img.image_id }}")
+#     reaction = crud.create_reaction()
+    
+#     return redirect('feed.html')
+
+#Get reaction value as JSON
+@app.route('/feed.json')
+def get_reaction_value():
+
+    
+    reaction_val = request.args.get("reaction_val")
+    #many values sent to crud 
+
+    image_id = request.args.get("image_id")
+
+    #break out reaction_vals into indiv variables that go into crud function
+
+    print('*************',  reaction_val, '********')
+    print('*************',  image_id, '********')
+
+    return jsonify({"values" : True })
+    
 
 
-#////////////////////////////////////////////////////Videos//////////////////////////////////////////////////
-#TO BE SEEN IN PROFILE
-# @app.route('/feed')
-# def all_videos():
-#     """View all videos."""
 
-#     videos = crud.get_videos()
-#     print(videos)
-
-#     return render_template('/feed.html', videos=videos)
-
-
-# @app.route('/feed/<video_id>')
-# def show_video(video_id):
-#     """Show details on a particular video."""
-
-#     video = crud.get_video_by_id(video_id)
-
-#     return render_template('/profile.html', video=video)
 
 
 

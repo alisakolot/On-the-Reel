@@ -3,33 +3,46 @@
 
 
 {% block body %}
+  
+
   <h1></h1>
 
   <h2>feed</h2>
     <p>MEDIA</p>
 
-  <div class="media-library">
+  <div class="img-display">
     <p>
+
       {% for img in images %}
+
       <div><img src="{{ img.image_path }}"></div>
-      Image Id: {{ img.image_id }}
-      Description: {{ img.description }}
-      <input type="radio" id="reaction-1" name="emoji-{{ img.image_id }}" value=1>1
-      <input type="radio" id="reaction-2" name="emoji-{{ img.image_id }}" value=2>2
-      <input type="radio" id="reaction-3" name="emoji-{{ img.image_id }}" value=3>3
-      <input type="radio" id="reaction-4" name="emoji-{{ img.image_id }}" value=4>4
-      <input type="radio" id="reaction-5" name="emoji-{{ img.image_id }}" value=5>5
+      
+      <div class="image-info">
+
+        Image Id: {{ img.image_id }}
+        Description: {{ img.description }}
+        User id: {{ img.user_id }}
+        
+        <input type="radio" class="reaction" name="image" image_id = "{{ img.image_id }}" value=1>1
+        <input type="radio" class="reaction" name="image-{{ img.image_id }}" image_id= "{{ img.image_id }}" value=2>2
+        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=3>3
+        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=4>4
+        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=5>5
+
+      </div>
 
       {% endfor %}
-      
-
+    
     </p>
   </div>
 
   <br>
   <br>
 
+  
 
+{% endblock %}
 
-
+{% block scripts %}
+  <script src="/static/reactions.js"></script>
 {% endblock %}
