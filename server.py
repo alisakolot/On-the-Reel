@@ -194,21 +194,32 @@ def all_image_urls():
 #     return redirect('feed.html')
 
 #Get reaction value as JSON
+# @app.route('/feed.json')
+# def get_reaction_value():
+
+    
+#     reaction_val = request.args.get("reaction_val")
+#     #many values sent to crud 
+
+#     image_id = request.args.get("image_id")
+
+#     #break out reaction_vals into indiv variables that go into crud function
+
+#     print('*************',  reaction_val, '********')
+#     print('*************',  image_id, '********')
+
+#     return jsonify({"values" : True })
+
 @app.route('/feed.json')
 def get_reaction_value():
 
-    
     reaction_val = request.args.get("reaction_val")
-    #many values sent to crud 
-
-    image_id = request.args.get("image_id")
-
-    #break out reaction_vals into indiv variables that go into crud function
 
     print('*************',  reaction_val, '********')
-    print('*************',  image_id, '********')
-
+    
     return jsonify({"values" : True })
+
+
     
 
 

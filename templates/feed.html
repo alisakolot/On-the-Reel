@@ -9,6 +9,7 @@
 
   <h2>feed</h2>
     <p>MEDIA</p>
+  
 
   <div class="img-display">
     <p>
@@ -17,19 +18,28 @@
 
       <div><img src="{{ img.image_path }}"></div>
       
-      <div class="image-info">
+      <div class="media-library">
 
         Image Id: {{ img.image_id }}
         Description: {{ img.description }}
         User id: {{ img.user_id }}
-        
-        <input type="radio" class="reaction" name="image" image_id = "{{ img.image_id }}" value=1>1
-        <input type="radio" class="reaction" name="image-{{ img.image_id }}" image_id= "{{ img.image_id }}" value=2>2
-        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=3>3
-        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=4>4
-        <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=5>5
+        <!-- <form id="image-info" action='/feed' method="POST">
+          <input type="radio" class="reaction" name="{{ img.image_id }}" value=1>1
+          <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=2>2
+          <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=3>3
+          <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=4>4
+          <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=5>5
+        </form> -->
+          <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
 
-      </div>
+          <script>
+          function myFunction(x) {
+            x.classList.toggle("fa-thumbs-down");
+          }
+          </script>
+          
+
+        </div>
 
       {% endfor %}
     
