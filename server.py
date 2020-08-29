@@ -85,10 +85,10 @@ def logging_in_user():
     
     #getting the user object
     db_user = crud.get_username(username)
-    
-    print('******', db_user)
 
+    #setting the session
 
+ 
     if db_user is None: 
         flash('Incorrect username/password, please try again.')
         return redirect('/login')
@@ -157,6 +157,8 @@ def all_image_urls():
 
     return render_template('feed.html', images=images)
 
+    
+
 @app.route('/feed')
 def logged_in_user():
     """Information of user browsing feed."""
@@ -166,26 +168,11 @@ def logged_in_user():
 
     user_id = session['user_id'] #will overwrite the previous session when a new user(info) is in session
     
-    print(">>>>>>>>>>>", user_id)
-    return user_id
+    print(">>>>>>>>>>>SESSION/USER_ID:", user_id)
+    return render_template('feed.html', user_id=user_id)
 
 
-#Get reaction value as JSON
-# @app.route('/feed.json')
-# def get_reaction_value():
 
-    
-#     reaction_val = request.args.get("reaction_val")
-#     #many values sent to crud 
-
-#     image_id = request.args.get("image_id")
-
-#     #break out reaction_vals into indiv variables that go into crud function
-
-#     print('*************',  reaction_val, '********')
-#     print('*************',  image_id, '********')
-
-#     return jsonify({"values" : True })
 
 # @app.route('/feed.json')
 # def get_like_value():
@@ -216,6 +203,8 @@ def like_button():
     
     print("REACTION BUTTON:", like_button)
     print('GET IMAGE ID FROM JS:', image_id, '********')
+
+
     #add to crud
     # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
     
@@ -231,23 +220,22 @@ def following():
 
 
     #get creator id
-    creator = request.args.get("follows")
-    print('CREATOR ID:', creator, '********')
+    creator_id = request.args.get("follows")
+    print('CREATOR ID:', creator_id, '********')
+    creator=creator_id
 
     #get subscriber id 
 
     #find a way to check if a user is logged in on feed
     #if logged in, then can commit to db
     #else "please log in" msg
-    subscriber = session['user_id'] 
-    print('SUBSCRIBER ID:', subscriber, '********')
-
-
+    subscriber_id = session['user_id'] 
+    print('SUBSCRIBER ID:', subscriber_id, '********')
+    subscriber=subscriber_id
 
 
     #add to crud: follows
-
-    #create_following(subscriber, creator)
+    # new_following = crud.create_following(subscriber, creator)
     
     return jsonify({"follows" : True })
 

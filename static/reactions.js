@@ -34,8 +34,14 @@ $('.reaction-button').on('click', (evt) => {
   const btn = evt.target;
   console.log(evt.target);
   console.log(evt.target.id);
+  console.log('text');
   console.log(evt.target.parentNode);
-  console.log(evt.target.parentNode.parentNode.id);
+  console.log(evt.target.parentNode.parentNode);
+
+  console.log('');
+  let imageId = evt.target.parentNode.parentNode.id;
+  console.log(imageId);
+  console.log(typeof imageId);
 
   // if (btn.innerText === 'Like') {
   //   btn.innerText = 'Dislike';
@@ -80,8 +86,9 @@ $('.reaction-button').on('click', (evt) => {
   // }
 
 
-    const formInput = {likes_val : $(evt.target).val(), image_session : $(evt.target.parentNode.parentNode.id).val()};
-    
+    const formInput = {likes_val : $(evt.target).val(), image_session : imageId};
+      console.log(formInput)
+
   $.get('/feed.json', formInput, (res) => {
         alert('sent to server')
   
