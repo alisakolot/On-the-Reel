@@ -68,12 +68,12 @@ def create_image(image_path, description, user_id):
 #//////////////////////////Codependent Relationships////////////////////////////
 
 
-def create_reaction(user, reaction, video=None, image=None):
+def create_reaction(user, video, image, reaction):
     """Keep track of reactions."""
 
     #Take user, video classes and add reaction(random int) to the database
     
-    reaction = Reaction(user=user, video=video, image=image, reaction=reaction)
+    reaction = Reaction(user=user, video=None, image=image, reaction=reaction)
 
     #This will go into the 'reaction' table
     db.session.add(reaction)

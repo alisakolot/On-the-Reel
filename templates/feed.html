@@ -15,7 +15,8 @@
     <p>
 
       {% for img in images %}
-
+      
+      
 
           <div><img src="{{ img.image_path }}"></div>
           
@@ -65,7 +66,7 @@
               <button id="follow-button" method=POST value="{{ img.user_id }}" action='/follow/feed' >Follow </button>
             </section>
 
-
+  
       {% endfor %}
     
     </p>

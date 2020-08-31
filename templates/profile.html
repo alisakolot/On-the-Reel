@@ -34,6 +34,7 @@
     <p>
       {% for img in user.images %}
         <img src="{{ img.image_path }}"/>
+        Image Reactions: {{ img.reactions }}
       {% endfor %}
     </p>
   </div>

@@ -136,6 +136,14 @@ def upload_images(user_id):
         new_image = crud.create_image(image_path, description, user_id)
     
     return redirect(f'/profile/{user_id}') 
+
+#get likes from database
+@app.route('/profile/<user_id>')
+def show_likes():
+    """Show reactions on a photo."""
+    #for each photo on the page show all the likes
+
+
     
 
 
@@ -149,11 +157,11 @@ def all_image_urls():
 
     images = crud.get_images()
     image_urls = []
+  
 
 
     for image in images: 
         image_urls.append(image.image_path)
-        
 
     return render_template('feed.html', images=images)
 
@@ -174,14 +182,7 @@ def logged_in_user():
 
 
 
-# @app.route('/feed.json')
-# def get_like_value():
 
-#     reaction_val = request.args.get("reaction_val")
-
-#     print('*************',  reaction_val, '********')
-    
-#     return jsonify({"values" : True })
 
 @app.route('/feed.json', methods=['GET'])
 def like_button():
@@ -189,6 +190,7 @@ def like_button():
 
     #get reaction 1:
     like_button = request.args.get("likes_val")
+    reaction = like_button #test
     
 
     #subscriber/viewer id
@@ -198,16 +200,17 @@ def like_button():
     
     #get image id:
     image_id = request.args.get("image_session")
-    # image_reactions = crud.get_image_reactions(image_id, user_id)
-    # print('*************',  image_id, image_reactions, '********')
-    
-    print("REACTION BUTTON:", like_button)
-    print('GET IMAGE ID FROM JS:', image_id, '********')
+    image = crud.get_image_by_id(int(image_id))
+    print('*************',  image_id, image, '********')
 
 
+    print("REACTION BUTTON:", like_button, int(like_button))
+    print('GET IMAGE ID FROM JS:', image,  '********')
+
+    video=None
     #add to crud
-    # reaction = create_reaction(user, reaction=like_button, video=None, image=None)
-    
+    reaction = crud.create_reaction(user, video, image, int(reaction))
+    print("REACTION:", reaction)
     return jsonify({"likes" : True })
 
 
@@ -221,8 +224,9 @@ def following():
 
     #get creator id
     creator_id = request.args.get("follows")
-    print('CREATOR ID:', creator_id, '********')
-    creator=creator_id
+    creator = crud.get_user_by_id(int(creator_id))
+    print('CREATOR ID:', creator, '********')
+
 
     #get subscriber id 
 
@@ -230,12 +234,13 @@ def following():
     #if logged in, then can commit to db
     #else "please log in" msg
     subscriber_id = session['user_id'] 
-    print('SUBSCRIBER ID:', subscriber_id, '********')
-    subscriber=subscriber_id
+    subscriber = crud.get_user_by_id(int(subscriber_id))
+    print('SUBSCRIBER ID:', subscriber, '********')
+
 
 
     #add to crud: follows
-    # new_following = crud.create_following(subscriber, creator)
+    new_following = crud.create_following(subscriber, creator)
     
     return jsonify({"follows" : True })
 

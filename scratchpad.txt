@@ -1,4 +1,6 @@
 scratchpad.txt
+ <!-- {% for img in images | sort.attribute('image_id'), reverse=True %} -->
+
 
 Form for reactions: 
 
