@@ -10,61 +10,52 @@
   <h2>feed</h2>
     <p>MEDIA</p>
   
-
-  <div class="img-display">
-    <p>
+    
 
       {% for img in images %}
-      
-      
-
-          <div><img src="{{ img.image_path }}"></div>
+        
           
-          <div class="media-library" id="{{ img.image_id }}">
-            
-            Image Id: {{ img.image_id }}
-            Description: {{ img.description }}
-            User id: {{ img.user_id }}
-            <!-- <form id="image-info" action='/feed' method="POST">
-              <input type="radio" class="reaction" name="{{ img.image_id }}" value=1>1
-              <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=2>2
-              <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=3>3
-              <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=4>4
-              <input type="radio" class="reaction" name="image-{{ img.image_id }}" value=5>5
-            </form> -->
-
+            <div><img src="{{ img.image_path }}"></div>
+          
+            <div class="media-library" id="{{ img.image_id }}">
               
-                <section class="likes">
-                  <button class="reaction-button"  value=1 method=POST action='/feed'>Like
-                    <i onclick="myFunction(this)" class="fa fa-thumbs-up" id="like-button"></i>
-                    <script>
-                    function myFunction(x) {
-                      x.classList.toggle("fa-thumbs-down");}
-                    </script>
-                  </button>
-                </section>
+              Image Id: {{ img.image_id }}
+              Description: {{ img.description }}
+              User id: {{ img.user_id }}
+              <li><a href='/profile/{{ img.user_id }}'> Go to profile</a></li>
 
-                <section class="smiley" >
-                  <button class="reaction-button" value=2 method=POST action='/feed'>:)</button>
-                </section>
+                  <section class="likes">
+                    <button class="reaction-button"  value=1 method=POST action='/feed'>Like
+                      <!-- <i onclick="myFunction(this)" class="fa fa-thumbs-up" id="like-button"></i>
+                      <script>
+                      function myFunction(x) {
+                        x.classList.toggle("fa-thumbs-down");} -->
+                      </script>
+                    </button>
+                  </section>
 
-                <section class="laughter" >
-                  <button class="reaction-button" value=3 method=POST action='/feed'>xD</button>
-                </section>
+                  <section class="smiley" >
+                    <button class="reaction-button" value=2 method=POST action='/feed'>:)</button>
+                  </section>
 
-                <section class="Meh" >
-                  <button class="reaction-button" value=4 method=POST action='/feed'>:/</button>
-                </section>
+                  <section class="laughter" >
+                    <button class="reaction-button" value=3 method=POST action='/feed'>xD</button>
+                  </section>
 
-                <section class="Angry" >
-                  <button class="reaction-button" value=5 method=POST action='/feed'>:C</button>
-                </section>
+                  <section class="Meh" >
+                    <button class="reaction-button" value=4 method=POST action='/feed'>:/</button>
+                  </section>
 
-            </div>
+                  <section class="Angry" >
+                    <button class="reaction-button" value=5 method=POST action='/feed'>:C</button>
+                  </section>
 
-            <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
-              <button id="follow-button" method=POST value="{{ img.user_id }}" action='/follow/feed' >Follow </button>
-            </section>
+              </div>
+
+              <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
+                <button id="follow-button" method=POST value="{{ img.user_id }}" action='/follow/feed' >Follow </button>
+              </section>
+       
 
   
       {% endfor %}

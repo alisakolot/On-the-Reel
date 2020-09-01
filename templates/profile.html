@@ -33,8 +33,12 @@
   <div class="media-library">
     <p>
       {% for img in user.images %}
+        <br>
+        <br>
         <img src="{{ img.image_path }}"/>
         Image Reactions: {{ img.reactions }}
+        <br>
+        <br>
       {% endfor %}
     </p>
   </div>

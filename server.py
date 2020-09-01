@@ -108,12 +108,13 @@ def logging_in_user():
 
 @app.route('/profile/<user_id>')
 def show_user(user_id):
-    """Show details on a particular user."""
+    """Show details on a particular user on profile page."""
     print('in profile route user_id =', user_id)
 
     user = crud.get_user_by_id(user_id)
 
     return render_template('profile.html', user=user)
+
 
 
 #Sending Photos to cloudinary 
@@ -157,15 +158,12 @@ def all_image_urls():
 
     images = crud.get_images()
     image_urls = []
-  
-
 
     for image in images: 
         image_urls.append(image.image_path)
 
     return render_template('feed.html', images=images)
 
-    
 
 @app.route('/feed')
 def logged_in_user():
@@ -179,8 +177,16 @@ def logged_in_user():
     print(">>>>>>>>>>>SESSION/USER_ID:", user_id)
     return render_template('feed.html', user_id=user_id)
 
+@app.route('/feed')
+def show_creator_images():
+    """Show details on a particular user in feed."""
+    
+    user_id = session.get('img.user_id')
+    print("CREATORS USER ID:" , user_id, type(user_id))
 
+    user = crud.get_user_by_id(user_id)
 
+    return render_template('feed.html', user=user)
 
 
 
