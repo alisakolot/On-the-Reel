@@ -138,14 +138,28 @@ def upload_images(user_id):
     
     return redirect(f'/profile/{user_id}') 
 
+
+#Store user bio
+# @app.route('/profile/<user_id>/submit', methods=['POST'])
+# def submit(user_id):
+
+#     user = crud.get_user_by_id(user_id)
+#     session['user_id'] =  user
+
+#     return  redirect(f'/profile/{user_id}')
+#     return 'You entered: {}'.format(request.form['text'])
+
 #get likes from database
 @app.route('/profile/<user_id>')
 def show_likes():
     """Show reactions on a photo."""
     #for each photo on the page show all the likes
-
-
+    #get the reactions for each phot
+    # reactions = session.get('image.reactions')
     
+    # reactions = crud.get_image_reactions(image_id)
+    # print("IMAGE REACTIONS:", reactions)
+
 
 
 
@@ -158,9 +172,15 @@ def all_image_urls():
 
     images = crud.get_images()
     image_urls = []
+    # image_id_list = []
+  
+    
 
     for image in images: 
         image_urls.append(image.image_path)
+        # image_id_list.append(image.image_id)
+        # image_id_list = sorted(image_id_list, reverse=True)
+        
 
     return render_template('feed.html', images=images)
 
@@ -194,7 +214,7 @@ def show_creator_images():
 def like_button():
     """Like button."""
 
-    #get reaction 1:
+    #get reactio:
     like_button = request.args.get("likes_val")
     reaction = like_button #test
     
@@ -234,11 +254,12 @@ def following():
     print('CREATOR ID:', creator, '********')
 
 
-    #get subscriber id 
 
     #find a way to check if a user is logged in on feed
     #if logged in, then can commit to db
     #else "please log in" msg
+
+    #get subscriber id 
     subscriber_id = session['user_id'] 
     subscriber = crud.get_user_by_id(int(subscriber_id))
     print('SUBSCRIBER ID:', subscriber, '********')

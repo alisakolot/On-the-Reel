@@ -12,8 +12,17 @@
     <!-- <li><a href="/feed">View all users</a></li> -->
   </ul>
 
+  <div class="dropdown">Followers
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+      <a href="#">{{ user.subscribers }}</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+
   <h2>Bio</h2>
-    <p>User Bio.</p>
+
 
   <h3>Upload Video/Photo Here</h3>
     <div class="media-upload-form">
@@ -23,14 +32,11 @@
         <br>
         <input type="submit" id="submit-media" name="submit" action="/profile">Upload</button>
         <br>
-        <input type="text" name="image-title" id="image-title">Title
-        <br>
-        <br>
         <textarea name="user-description" id="user-description"></textarea>Description
         <br>
       </form>
    
-  <div class="media-library">
+  <div class="media-library" id=img.image_id>
     <p>
       {% for img in user.images %}
         <br>

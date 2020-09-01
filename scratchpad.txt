@@ -1,5 +1,12 @@
 scratchpad.txt
+ORDERING IMAGES
  <!-- {% for img in images | sort.attribute('image_id'), reverse=True %} -->
+
+ADDING BIO FORM 
+    <!-- <form action="{{ url_for('submit') }}" method="post" id={{ user.user_id }}>
+      <textarea name="text"></textarea>
+      <input type="static">
+    </form> -->
 
 
 Form for reactions: 

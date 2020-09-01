@@ -173,16 +173,19 @@ def get_image_by_id(image_id):
 
     return Image.query.get(image_id)
 
-# def get_image_reactions(image_id, user_id):
-#     """Return tuples of image id and image path."""
 
-#     return Image.query.filter_by(image_id, user_id).all()
 
 def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
     return Image.query.filter_by(user_id).all()
-    
+
+#///////////////////////////////////// Get Reactions Info/////////////////////////
+
+def get_image_reactions(image_id):
+    """Return reactions based on image id."""
+
+    return Image.query.filter_by(image_id).all()    
 
 if __name__ == '__main__':
     from server import app
