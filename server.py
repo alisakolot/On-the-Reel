@@ -97,7 +97,7 @@ def logging_in_user():
         return redirect('/login')
     else:
         session['user_id'] = db_user.user_id
-        return redirect(f'/profile/{db_user.user_id}/images')
+        return redirect(f'/profile/{db_user.user_id}')
 
 
 
@@ -105,18 +105,9 @@ def logging_in_user():
 
 
 
-@app.route('/profile/<user_id>')
-def show_user(user_id):
-    """Show details on a particular user on profile page."""
-    print('in profile route user_id =', user_id)
-
-    user = crud.get_user_by_id(user_id)
-
-    return render_template('profile.html', user=user)
-
 
 #Show user photos in desc order
-@app.route('/profile/<user_id>/images')
+@app.route('/profile/<user_id>')
 def profile_image(user_id):
     """Show user's images."""
 
@@ -145,7 +136,7 @@ def upload_images(user_id):
     
         new_image = crud.create_image(image_path, description, user_id)
     
-    return redirect(f'/profile/{user_id}/images') 
+    return redirect(f'/profile/{user_id}') 
 
 
 
@@ -275,14 +266,14 @@ def following():
     print('SUBSCRIBER ID:', subscriber, '********')
 
     #get following relationships from crud
-    follow_subscr = crud.get_following_by_subscriber(subscriber_id)
-    print("FOLLOW SUBSCR:", follow_subscr)
+    follow_subscr = crud.get_follow_by_subscr_creator(subscriber_id, creator_id)
+    # print("FOLLOW SUBSCR:", follow_subscr)
 
     #add to crud: follows
-    if subscriber_id not in follow_subscr:
+    
+    if not follow_subscr:
         new_following = crud.create_following(subscriber, creator)
-        subscriber_id == creator_id
-        flash("you already follow this user")
+    
         
 
     return jsonify({"follows" : True })

@@ -197,8 +197,17 @@ def get_image_by_user_id(user_id):
 ##///////////////////////////////////// Get Following Info///////////////////////// 
 
 def get_following_by_subscriber(subscriber_id):
+    #list of all the followings for each subscriber
+    return Following.query.filter_by(subscriber_id=subscriber_id).all()
 
-    return Following.query.filter_by(subscriber_id).all()
+
+def get_follow_by_subscr_creator(subscriber_id, creator_id):
+    #list of all the following for each subscriber/creator
+    
+    
+    return Following.query.filter_by(subscriber_id=subscriber_id, creator_id=creator_id).first()
+
+
 
 if __name__ == '__main__':
     from server import app
