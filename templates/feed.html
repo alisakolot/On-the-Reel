@@ -10,6 +10,8 @@
   <h2>feed</h2>
     <p>MEDIA</p>
     <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
+
+    <button class="my-profile" id="profile" method=POST action='/feed'>My Profile</button>
   
       {% for img in images %}
         
@@ -54,7 +56,11 @@
               </div>
 
               <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
-                <button id="follow-button" method=POST value="{{ img.user_id }}" action='/follow/feed' >Follow </button>
+                <button id="follow-button" value="{{ img.user_id }}">Follow </button>
+              </section>
+
+              <section class="unfollow-button" value="{{ img.user_id }}" id="{{ img.image_id }}"></section>
+                <button id="unfollow-button" value="{{ img.user_id }}">Unfollow </button>
               </section>
        
 

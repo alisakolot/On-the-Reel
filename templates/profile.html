@@ -5,24 +5,31 @@
 {% block body %}
   <h1>Hello {{ user.first_name }}</h1>
   <p name="user_id" id={{ user.user_id }}></p>
-
+  <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
   <h2>profile</h2>
   <ul>
     <li><a href="/feed">View feed.</a></li>
     <!-- <li><a href="/feed">View all users</a></li> -->
   </ul>
 
+    <form action="/submit" method="post" id={{ user.user_id }}>
+      <textarea name="text"></textarea>
+      <input type="submit">
+    </form>
+
   <div class="dropdown">Followers
     <button class="dropbtn">Dropdown</button>
     <div class="dropdown-content">
       {% for subscr in user.subscribers %}
-        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber_id }}</a>
+        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber_id }} </a>
       {% endfor %}
     </div>
   </div> 
 
   <h2>Bio</h2>
-
+  {% if text %}
+    <p>{{ text }}</p>
+  {% endif %}
 
   <h3>Upload Video/Photo Here</h3>
     <div class="media-upload-form">
@@ -43,7 +50,7 @@
         <br>
         <img src="{{ img.image_path }}" style="width:500px;height:600px;"/>
         {% for emoji in img.reactions %}
-          Image Reactions: {{ emoji.reaction }}
+          Emoji: {{ emoji.reaction }}
         {% endfor %}
         <br>
         <br>
@@ -54,3 +61,7 @@
 
 
     {% endblock %}
+
+{% block scripts %}
+  <script src="/static/reactions.js"></script>
+{% endblock %}

@@ -197,16 +197,32 @@ def get_image_by_user_id(user_id):
 ##///////////////////////////////////// Get Following Info///////////////////////// 
 
 def get_following_by_subscriber(subscriber_id):
-    #list of all the followings for each subscriber
+    """List of all the followings for each subscriber."""
     return Following.query.filter_by(subscriber_id=subscriber_id).all()
 
 
 def get_follow_by_subscr_creator(subscriber_id, creator_id):
-    #list of all the following for each subscriber/creator
+    """List of all the following for each subscriber/creator"""
     
     
     return Following.query.filter_by(subscriber_id=subscriber_id, creator_id=creator_id).first()
 
+
+def unfollow(subscriber_id, creator_id):
+
+#db.session.delete(delete whatever you queried)
+#db.session.commit()
+
+    # following = Following(subscriber=subscriber, creator=creator)
+    
+    unfollow = Following.query.filter_by(subscriber_id=subscriber_id, creator_id=creator_id).first()
+
+    print("about to delete:", unfollow)
+    if unfollow:
+        db.session.delete(unfollow)
+        db.session.commit()
+
+    return "function complete"
 
 
 if __name__ == '__main__':

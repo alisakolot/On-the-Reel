@@ -113,8 +113,9 @@ def profile_image(user_id):
 
     user = crud.get_user_by_id(user_id)
     images = crud.get_image_by_user_id(user_id)
+    text=None
 
-    return render_template(f'profile.html', images=images, user=user)
+    return render_template(f'profile.html', images=images, user=user, text=text)
 
 
 #Sending Photos to cloudinary 
@@ -141,18 +142,24 @@ def upload_images(user_id):
 
 
 
- 
-
 
 #Store user bio
-# @app.route('/profile/<user_id>/submit', methods=['POST'])
-# def submit(user_id):
+@app.route('/submit', methods=['POST'])
+def submit():
 
-#     user = crud.get_user_by_id(user_id)
-#     session['user_id'] =  user
+    # user = crud.get_user_by_id(user_id)
+    # session['user_id'] =  user
+    user_id = session.get('user_id')
 
-#     return  redirect(f'/profile/{user_id}')
-#     return 'You entered: {}'.format(request.form['text'])
+    user = crud.get_user_by_id(user_id)
+    images = crud.get_image_by_user_id(user_id)
+
+    text = request.form.get("text")
+    session['text'] = text
+
+    return render_template(f'profile.html', text=text, user=user, images=images)
+    
+    
 
 
 
@@ -197,17 +204,6 @@ def logged_in_user():
     print(">>>>>>>>>>>SESSION/USER_ID:", user_id)
     return render_template('feed.html', user_id=user_id)
 
-# @app.route('/feed')
-# def show_creator_images():
-#     """Show details on a particular user in feed."""
-    
-#     user_id = session.get('img.user_id')
-#     print("CREATORS USER ID:" , user_id, type(user_id))
-
-#     user = crud.get_user_by_id(user_id)
-
-#     return render_template('feed.html', user=user)
-
 
 
 @app.route('/feed.json', methods=['GET'])
@@ -245,6 +241,27 @@ def display_feed_logout():
     
     return redirect('login.html')
 
+@app.route('/feed/profile/', methods=['GET'])
+def leave_feed():
+    """Return to profile."""
+
+    user_id = session['user_id']
+    profile = request.get.args("logout")
+
+    if profile:
+
+        return redirect(f'/profile/{user_id}') 
+
+# @app.route('/feed/profile/', methods=['GET'])
+# def return_to_profile():
+#     """Return to profile."""
+
+#     user_id = session['user_id']
+
+#     return redirect(f'/profile/{user_id}') 
+
+
+
 
 #//////////////////////////////////////////Following/////////////////////////
 
@@ -255,7 +272,7 @@ def following():
 
 
     #get creator id
-    creator_id = request.args.get("follows")
+    creator_id = request.args.get("creatorId")
     creator = crud.get_user_by_id(int(creator_id))
     print('CREATOR ID:', creator, '********')
 
@@ -274,9 +291,19 @@ def following():
     if not follow_subscr:
         new_following = crud.create_following(subscriber, creator)
     
-        
-
     return jsonify({"follows" : True })
+
+@app.route('/feed/unfollow', methods=['GET'])
+def unfollow():
+    """Subscriber unfollows creator."""
+
+    subscriber_id = session['user_id'] 
+    creator_id = request.args.get("creatorId")
+    print("ABOUT TO CALL CRUD")
+
+    unfollow = crud.unfollow(int(subscriber_id), int(creator_id))
+
+    return jsonify({"follows" : False })
 
 
 #find a way to check if a user is logged in on feed

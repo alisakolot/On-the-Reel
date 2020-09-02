@@ -125,37 +125,83 @@ $('.logout').on('click', (evt) => {
 
 });
 
-// let imagePath = $('#image_path').html(`${res.user_id}`);
-  // console.log(imagePath) 
-
-
-
-
-
-
 
 
 // Follow Button:
 $('.follow-button').on('click', (evt) => {
+  evt.preventDefault();
   const btn = evt.target;
   console.log(evt.target)
 
+  const formInput = {creatorId : $(evt.target).val()};
+
   if (btn.innerText === 'Follow') {
-    btn.innerText = 'Unfollow';
+    $.get('/follow/feed.json', formInput, (res) => {
+      alert('you followed user x');
+
+      btn.innerText = 'Unfollow'; 
+    });
+
+  } else if (btn.innerText === 'Unfollow') { 
+      $.get('/feed/unfollow', formInput, (res) => {
+        alert('you unfollowed user x');
+      })
+        btn.innerText = 'Follow'; 
+        
+      
     console.log(btn.innerText)
-  } else {
-    btn.disabled = true;
     console.log(btn.innerText)
   }
+
+  // const formInput = {follows : $(evt.target).val()};
+
+  // $.get('/follow/feed.json', formInput, (res) => {
+  //     alert('sent to server')
+      
+  // });
+});
+
+//Unfollow
+// $('.unfollow-button').on('click', (evt) => {
+//   const btn = evt.target;
+//   console.log(evt.target)
+
+//   if (btn.innerText === 'Unfollow') {
+
+  
+//   } else {
+//     btn.disabled = true;
+//     alert('Unfollow?');
+//       $.get('/feed/unfollow/', (res) => {
+//         alert('you unfollowed user x')
+//       })
+
+//     console.log(btn.innerText)
+//     console.log(btn.innerText)
+//   }
   
 
-  const formInput = {follows : $(evt.target).val()};
+//   const formInput = {follows : $(evt.target).val()};
+//   console.log(formInput)
 
-  $.get('/follow/feed.json', formInput, (res) => {
-      alert('sent to server')
+//   $.get('/feed/unfollow', formInput, (res) => {
+//       alert('sent to server')
       
+//   });
+// });
+
+//Return to Profile
+$('.my-profile').on('click', (evt) => {
+  const btn = evt.target;
+    
+  $.get('/feed/profile/', (res) => {
+        let userId=user_id
+        alert('redirect to profile?');
+        window.location = "http://localhost:5000/profile/{{userId}}"
   });
+
 });
+
 
 
 
