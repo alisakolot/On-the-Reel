@@ -15,9 +15,9 @@
   <div class="dropdown">Followers
     <button class="dropbtn">Dropdown</button>
     <div class="dropdown-content">
-      <a href="#">{{ user.subscribers }}</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      {% for subscr in user.subscribers %}
+        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber_id }}</a>
+      {% endfor %}
     </div>
   </div> 
 
@@ -38,11 +38,13 @@
    
   <div class="media-library" id=img.image_id>
     <p>
-      {% for img in user.images %}
+      {% for img in images %}
         <br>
         <br>
-        <img src="{{ img.image_path }}"/>
-        Image Reactions: {{ img.reactions }}
+        <img src="{{ img.image_path }}" style="width:500px;height:600px;"/>
+        {% for emoji in img.reactions %}
+          Image Reactions: {{ emoji.reaction }}
+        {% endfor %}
         <br>
         <br>
       {% endfor %}

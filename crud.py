@@ -6,6 +6,8 @@ import os
 import sample_users
 from flask import Flask
 
+from sqlalchemy import desc
+
 
 # os.system('createdb alisadb2')
 
@@ -157,10 +159,15 @@ def get_video_by_id(video_id):
 
 #///////////////////////////////////// Get Image Info/////////////////////////
 
+# emps = Employee.query.options(db.joinedload('dept')).all()
+def get_images_eager():
+    
+    return Image.query.options(db.joinedload('user')).order_by(desc(Image.image_id)).all()
+
 def get_images():
     """Return all images."""
 
-    return Image.query.all()
+    return Image.query.order_by(desc(Image.image_id)).all()
 
 def get_images_by_path(image_path):
     """Return all image paths/urls."""
@@ -178,14 +185,20 @@ def get_image_by_id(image_id):
 def get_image_by_user_id(user_id):
     """Return user id corresponding to image id."""
 
-    return Image.query.filter_by(user_id).all()
+    return Image.query.filter_by(user_id=user_id).order_by(desc(Image.image_id)).all()
 
 #///////////////////////////////////// Get Reactions Info/////////////////////////
 
-def get_image_reactions(image_id):
-    """Return reactions based on image id."""
+# def get_image_reactions(image_id):
+#     """Return reactions based on image id."""
 
-    return Image.query.filter_by(image_id).all()    
+#     return Image.query.filter_by(image_id).all()  
+# 
+##///////////////////////////////////// Get Following Info///////////////////////// 
+
+def get_following_by_subscriber(subscriber_id):
+
+    return Following.query.filter_by(subscriber_id).all()
 
 if __name__ == '__main__':
     from server import app

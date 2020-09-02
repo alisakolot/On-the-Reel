@@ -91,7 +91,7 @@ class Reaction(db.Model):
 
     
     def __repr__(self):
-        return f'<Reaction reaction_id={self.reaction_id} video_id={self.video_id} image_id={self.image_id} user_id={self.user_id}>'
+        return f'<Reaction reaction_id={self.reaction_id} reaction={self.reaction} video_id={self.video_id} image_id={self.image_id} user_id={self.user_id}>'
 
 
 

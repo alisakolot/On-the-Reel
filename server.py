@@ -97,8 +97,7 @@ def logging_in_user():
         return redirect('/login')
     else:
         session['user_id'] = db_user.user_id
-        return redirect(f'/profile/{db_user.user_id}')
-
+        return redirect(f'/profile/{db_user.user_id}/images')
 
 
 
@@ -115,6 +114,16 @@ def show_user(user_id):
 
     return render_template('profile.html', user=user)
 
+
+#Show user photos in desc order
+@app.route('/profile/<user_id>/images')
+def profile_image(user_id):
+    """Show user's images."""
+
+    user = crud.get_user_by_id(user_id)
+    images = crud.get_image_by_user_id(user_id)
+
+    return render_template(f'profile.html', images=images, user=user)
 
 
 #Sending Photos to cloudinary 
@@ -136,7 +145,12 @@ def upload_images(user_id):
     
         new_image = crud.create_image(image_path, description, user_id)
     
-    return redirect(f'/profile/{user_id}') 
+    return redirect(f'/profile/{user_id}/images') 
+
+
+
+
+ 
 
 
 #Store user bio
@@ -149,18 +163,13 @@ def upload_images(user_id):
 #     return  redirect(f'/profile/{user_id}')
 #     return 'You entered: {}'.format(request.form['text'])
 
-#get likes from database
-@app.route('/profile/<user_id>')
-def show_likes():
-    """Show reactions on a photo."""
-    #for each photo on the page show all the likes
-    #get the reactions for each phot
-    # reactions = session.get('image.reactions')
+
+
+@app.route('/profile/<user_id>', methods=['GET']) 
+def display_logout():
+    """Display Logout button."""
     
-    # reactions = crud.get_image_reactions(image_id)
-    # print("IMAGE REACTIONS:", reactions)
-
-
+    return redirect('login.html')
 
 
 #////////////////////////////////////////////////////Feed//////////////////////////////////////////////////
@@ -170,19 +179,19 @@ def show_likes():
 def all_image_urls():
     """View all images in feed."""
 
-    images = crud.get_images()
+    images = crud.get_images_eager()
     image_urls = []
     # image_id_list = []
-  
-    
 
     for image in images: 
         image_urls.append(image.image_path)
         # image_id_list.append(image.image_id)
         # image_id_list = sorted(image_id_list, reverse=True)
         
-
+    print(images[1].user.username)
     return render_template('feed.html', images=images)
+
+
 
 
 @app.route('/feed')
@@ -197,16 +206,16 @@ def logged_in_user():
     print(">>>>>>>>>>>SESSION/USER_ID:", user_id)
     return render_template('feed.html', user_id=user_id)
 
-@app.route('/feed')
-def show_creator_images():
-    """Show details on a particular user in feed."""
+# @app.route('/feed')
+# def show_creator_images():
+#     """Show details on a particular user in feed."""
     
-    user_id = session.get('img.user_id')
-    print("CREATORS USER ID:" , user_id, type(user_id))
+#     user_id = session.get('img.user_id')
+#     print("CREATORS USER ID:" , user_id, type(user_id))
 
-    user = crud.get_user_by_id(user_id)
+#     user = crud.get_user_by_id(user_id)
 
-    return render_template('feed.html', user=user)
+#     return render_template('feed.html', user=user)
 
 
 
@@ -214,7 +223,7 @@ def show_creator_images():
 def like_button():
     """Like button."""
 
-    #get reactio:
+    #get reaction:
     like_button = request.args.get("likes_val")
     reaction = like_button #test
     
@@ -239,6 +248,12 @@ def like_button():
     print("REACTION:", reaction)
     return jsonify({"likes" : True })
 
+@app.route('/feed/', methods=['GET']) 
+def display_feed_logout():
+    """Display Logout button."""
+    
+    return redirect('login.html')
+
 
 #//////////////////////////////////////////Following/////////////////////////
 
@@ -254,25 +269,28 @@ def following():
     print('CREATOR ID:', creator, '********')
 
 
-
-    #find a way to check if a user is logged in on feed
-    #if logged in, then can commit to db
-    #else "please log in" msg
-
     #get subscriber id 
     subscriber_id = session['user_id'] 
     subscriber = crud.get_user_by_id(int(subscriber_id))
     print('SUBSCRIBER ID:', subscriber, '********')
 
-
+    #get following relationships from crud
+    follow_subscr = crud.get_following_by_subscriber(subscriber_id)
+    print("FOLLOW SUBSCR:", follow_subscr)
 
     #add to crud: follows
-    new_following = crud.create_following(subscriber, creator)
-    
+    if subscriber_id not in follow_subscr:
+        new_following = crud.create_following(subscriber, creator)
+        subscriber_id == creator_id
+        flash("you already follow this user")
+        
+
     return jsonify({"follows" : True })
 
 
-
+#find a way to check if a user is logged in on feed
+    #if logged in, then can commit to db
+    #else "please log in" msg
 
 
 

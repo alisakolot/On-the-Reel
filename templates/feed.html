@@ -9,21 +9,22 @@
 
   <h2>feed</h2>
     <p>MEDIA</p>
+    <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
   
-    
-
       {% for img in images %}
         
           
-            <div><img src="{{ img.image_path }}"></div>
+            <div><img src="{{ img.image_path }}" style="width:500px;height:600px;"></div>
           
             <div class="media-library" id="{{ img.image_id }}">
               
               Image Id: {{ img.image_id }}
               Description: {{ img.description }}
               User id: {{ img.user_id }}
-              <li><a href='/profile/{{ img.user_id }}'> Go to profile</a></li>
 
+   
+              <li><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a></li>
+              
                   <section class="likes">
                     <button class="reaction-button"  value=1 method=POST action='/feed'>Like
                       <!-- <i onclick="myFunction(this)" class="fa fa-thumbs-up" id="like-button"></i>

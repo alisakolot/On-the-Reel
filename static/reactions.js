@@ -113,6 +113,18 @@ $('.image-id').on('click', (evt) => {
 
 });
 
+
+//Logout
+$('.logout').on('click', (evt) => {
+  const btn = evt.target;
+    
+  $.get('/feed', (res) => {
+        alert('Logout?');
+        window.location = "http://localhost:5000/login"
+  });
+
+});
+
 // let imagePath = $('#image_path').html(`${res.user_id}`);
   // console.log(imagePath) 
 
