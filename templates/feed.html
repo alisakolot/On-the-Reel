@@ -10,12 +10,10 @@
   <h2>feed</h2>
     <p>MEDIA</p>
     <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
-
-    <button class="my-profile" id="profile" method=POST>My Profile</button>
+    <a href='/feed/profile/'>My Profile</a>
   
       {% for img in images %}
         
-          
             <div><img src="{{ img.image_path }}" style="width:500px;height:600px;"></div>
           
             <div class="media-library" id="{{ img.image_id }}">

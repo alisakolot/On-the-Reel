@@ -97,6 +97,7 @@ def logging_in_user():
         return redirect('/login')
     else:
         session['user_id'] = db_user.user_id
+        flash(f'Hello {db_user.username}')
         return redirect(f'/profile/{db_user.user_id}')
 
 
@@ -156,11 +157,16 @@ def submit():
 
     return render_template(f'profile.html', text=text, user=user, images=images)
 
-# @app.route('/profile/<user_id>')
-# def get_subscribers_per_user():
-#     """Getting the subscribers list."""
+@app.route('/profile/<user_id>')
+def get_subscribers_per_user(user_id):
+    """Getting the subscribers list."""
 
-#     return render_template(f'profile.html')
+    user = crud.get_user_by_id(user_id)
+
+    subscr = session.get['subscr']
+    print("SUBSCRIBERS LIST", user.subscribers)
+
+    return render_template(f'profile.html')
 
 
 @app.route('/profile/<user_id>', methods=['GET']) 
@@ -241,16 +247,16 @@ def display_feed_logout():
     
     return redirect('login.html')
 
-@app.route('/feed/profile/', methods=['GET'])
-def leave_feed():
-    """Return to profile."""
+# @app.route('/feed/profile/', methods=['GET'])
+# def leave_feed():
+#     """Return to profile."""
 
-    user_id = session['user_id']
-    profile = request.get.args("logout")
+#     user_id = session['user_id']
+#     profile = request.get.args("logout")
 
-    if profile:
+#     if profile:
 
-        return redirect(f'/profile/{user_id}') 
+#         return redirect(f'/profile/{user_id}') 
 
 
 @app.route('/feed/profile/', methods=['GET'])
@@ -258,6 +264,7 @@ def return_to_profile():
     """Return to profile."""
 
     user_id = session['user_id']
+  
 
     return redirect(f'/profile/{user_id}') 
 

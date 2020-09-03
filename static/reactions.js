@@ -161,46 +161,22 @@ $('.follow-button').on('click', (evt) => {
   // });
 });
 
-//Unfollow
-// $('.unfollow-button').on('click', (evt) => {
-//   const btn = evt.target;
-//   console.log(evt.target)
+ 
 
-//   if (btn.innerText === 'Unfollow') {
 
-  
-//   } else {
-//     btn.disabled = true;
-//     alert('Unfollow?');
-//       $.get('/feed/unfollow/', (res) => {
-//         alert('you unfollowed user x')
-//       })
-
-//     console.log(btn.innerText)
-//     console.log(btn.innerText)
-//   }
-  
-
-//   const formInput = {follows : $(evt.target).val()};
-//   console.log(formInput)
-
-//   $.get('/feed/unfollow', formInput, (res) => {
-//       alert('sent to server')
-      
-//   });
-// });
 
 //Return to Profile
-$('.my-profile').on('click', (evt) => {
-  const btn = evt.target;
-    
-  $.get('/feed/profile/', (res) => {
-        let userId=user_id;
-        alert('redirect to profile?');
-          window.location = $`http://localhost:5000/profile/`{userId}``
-  });
+// $('.profile').on('click', (evt) => {
+//   const btn = evt.target;
 
-});
+
+//   ('/feed/profile/', (res) => {
+//     let userId = user_id;
+//       window.location.href = `feed/profile/`;
+//       alert('redirect to profile?');
+//   });
+
+// });
 
 
 

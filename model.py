@@ -17,7 +17,7 @@ class User(db.Model):
     last_name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    #bio = db.Column(db.String)
+    #bio = db.Column(db.String(250))
 
     #subscribers(all the people who follow the creator, displays with user_id. displayed with a list of users)
     #creators(all the people who the subscriber follows, displays with user_id, displayed with list of users)

@@ -52,7 +52,8 @@ for n in range(5):
     email = f'user{n}@test.com'  #unique email
     password = 'test'
 
-    user = crud.create_user('first_name', 'last_name', 'username', email, password)
+    user = crud.create_user('first_name', 'last_name', 'username', email, password)  
+    #  bio="empty string"
     users_list.append(user)
 
 

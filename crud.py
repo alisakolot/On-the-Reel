@@ -139,6 +139,11 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+# def get_user_by_bio(user_id):
+#     """Return user by bio."""
+
+#     return User.query.filter(User.bio == bio).first()
+
 
 
 #///////////////////////////////////// Get Video Info/////////////////////////
