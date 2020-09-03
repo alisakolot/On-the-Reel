@@ -195,12 +195,13 @@ $('.my-profile').on('click', (evt) => {
   const btn = evt.target;
     
   $.get('/feed/profile/', (res) => {
-        let userId=user_id
+        let userId=user_id;
         alert('redirect to profile?');
-        window.location = "http://localhost:5000/profile/{{userId}}"
+          window.location = $`http://localhost:5000/profile/`{userId}``
   });
 
 });
+
 
 
 

@@ -105,7 +105,6 @@ def logging_in_user():
 
 
 
-
 #Show user photos in desc order
 @app.route('/profile/<user_id>')
 def profile_image(user_id):
@@ -141,8 +140,6 @@ def upload_images(user_id):
 
 
 
-
-
 #Store user bio
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -158,9 +155,12 @@ def submit():
     session['text'] = text
 
     return render_template(f'profile.html', text=text, user=user, images=images)
-    
-    
 
+# @app.route('/profile/<user_id>')
+# def get_subscribers_per_user():
+#     """Getting the subscribers list."""
+
+#     return render_template(f'profile.html')
 
 
 @app.route('/profile/<user_id>', methods=['GET']) 
@@ -252,13 +252,14 @@ def leave_feed():
 
         return redirect(f'/profile/{user_id}') 
 
-# @app.route('/feed/profile/', methods=['GET'])
-# def return_to_profile():
-#     """Return to profile."""
 
-#     user_id = session['user_id']
+@app.route('/feed/profile/', methods=['GET'])
+def return_to_profile():
+    """Return to profile."""
 
-#     return redirect(f'/profile/{user_id}') 
+    user_id = session['user_id']
+
+    return redirect(f'/profile/{user_id}') 
 
 
 
@@ -304,6 +305,9 @@ def unfollow():
     unfollow = crud.unfollow(int(subscriber_id), int(creator_id))
 
     return jsonify({"follows" : False })
+
+# @app.route('/feed/my-profile', methods=['GET'])
+# def return_to_profile
 
 
 #find a way to check if a user is logged in on feed

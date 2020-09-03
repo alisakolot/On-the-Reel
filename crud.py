@@ -161,6 +161,7 @@ def get_video_by_id(video_id):
 
 # emps = Employee.query.options(db.joinedload('dept')).all()
 def get_images_eager():
+    """Eager load images to access username."""
     
     return Image.query.options(db.joinedload('user')).order_by(desc(Image.image_id)).all()
 
@@ -208,12 +209,19 @@ def get_follow_by_subscr_creator(subscriber_id, creator_id):
     return Following.query.filter_by(subscriber_id=subscriber_id, creator_id=creator_id).first()
 
 
+
+
+
+# def get_subscribers_eager():
+#     """Eager load subscribers to access username."""
+    
+#     return Following.query.options(db.joinedload('following')).order_by(desc(Following.subscriber_id)).all()
+
+
+
+
 def unfollow(subscriber_id, creator_id):
-
-#db.session.delete(delete whatever you queried)
-#db.session.commit()
-
-    # following = Following(subscriber=subscriber, creator=creator)
+    """Remove following relationship."""
     
     unfollow = Following.query.filter_by(subscriber_id=subscriber_id, creator_id=creator_id).first()
 
