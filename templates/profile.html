@@ -20,8 +20,8 @@
   <div class="dropdown">Followers
     <button class="dropbtn">Dropdown</button>
     <div class="dropdown-content">
-      {% for subscr in user.subscribers %}
-        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber_id }} </a>
+      {% for subscr in subscribers %}
+        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber.username }} </a>
       {% endfor %}
     </div>
   </div> 

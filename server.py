@@ -107,7 +107,7 @@ def logging_in_user():
 
 
 #Show user photos in desc order
-@app.route('/profile/<user_id>')
+@app.route('/profile/something')
 def profile_image(user_id):
     """Show user's images."""
 
@@ -160,13 +160,15 @@ def submit():
 @app.route('/profile/<user_id>')
 def get_subscribers_per_user(user_id):
     """Getting the subscribers list."""
+    print("############")
 
     user = crud.get_user_by_id(user_id)
+    images = crud.get_image_by_user_id(user_id)
+    subscriber_un = crud.get_creators_subscriber(user_id)
 
-    subscr = session.get['subscr']
-    print("SUBSCRIBERS LIST", user.subscribers)
-
-    return render_template(f'profile.html')
+    text = None
+    
+    return render_template('profile.html', subscribers=subscriber_un, user=user, images=images, text=text)
 
 
 @app.route('/profile/<user_id>', methods=['GET']) 

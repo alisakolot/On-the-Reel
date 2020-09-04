@@ -215,7 +215,9 @@ def get_follow_by_subscr_creator(subscriber_id, creator_id):
 
 
 
-
+def get_creators_subscriber(user_id):
+    print('###THIS IS THE USER ID:', user_id)
+    return User.query.get(user_id).subscribers
 
 # def get_subscribers_eager():
 #     """Eager load subscribers to access username."""
