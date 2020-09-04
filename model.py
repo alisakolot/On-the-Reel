@@ -17,7 +17,7 @@ class User(db.Model):
     last_name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    #bio = db.Column(db.String(250))
+    bio = db.Column(db.String)
 
     #subscribers(all the people who follow the creator, displays with user_id. displayed with a list of users)
     #creators(all the people who the subscriber follows, displays with user_id, displayed with list of users)
@@ -25,8 +25,8 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} username={self.username} first_name={self.first_name} last_name={self.last_name} email={self.email} password={self.password}>' 
-        #bio={self.bio}
+        return f'<User user_id={self.user_id} username={self.username} first_name={self.first_name} last_name={self.last_name} email={self.email} password={self.password} bio={self.bio}>' 
+        
 
 
 
@@ -118,7 +118,7 @@ class Following(db.Model):
         return f'<Following subscriber_id={self.subscriber_id} creator_id={self.creator_id}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///alisadb2', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///mediadb', echo=True):
     #alisadb corresponds to database that will exist, how you are connecting to database 
 
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

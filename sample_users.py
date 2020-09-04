@@ -7,9 +7,9 @@ from datetime import datetime
 
 
 # #Users
-s = User(username="Suzie", email="email", password="password")
-c = User(username="Cheese", email="eeemail", password="pppassword")
-j = User(username="Jasmine", email="email1", password="password1")
+s = User(username="Suzie", email="email", password="password", bio="Suzie's bio")
+c = User(username="Cheese", email="eeemail", password="pppassword", bio = "Cheese's bio")
+j = User(username="Jasmine", email="email1", password="password1", bio = "Jasmine's bio")
 
 
 
@@ -22,8 +22,8 @@ v = [v1, v2]
 
 # Images
 
-# i1 = Image(image_path="path string1", description= "ABCD", date_posted=datetime.now(), user=)
-# i2 =  Image(image_path="pathstring2", description = "EFGH", date_posted=datetime.now(), user=c)
+i1 = Image(image_path="path string1", description= "ABCD", date_posted=datetime.now(), user=s)
+i2 =  Image(image_path="pathstring2", description = "EFGH", date_posted=datetime.now(), user=c)
 
 # i = [i1, i2]
 

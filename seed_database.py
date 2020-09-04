@@ -11,8 +11,8 @@ import server
 
 import sample_users
 
-os.system('dropdb alisadb2')
-os.system('createdb alisadb2')
+os.system('dropdb mediadb')
+os.system('createdb mediadb')
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -51,8 +51,8 @@ for n in range(5):
 
     email = f'user{n}@test.com'  #unique email
     password = 'test'
-
-    user = crud.create_user('first_name', 'last_name', 'username', email, password)  
+    bio = f'bio of user {n}'
+    user = crud.create_user('first_name', 'last_name', 'username', email, password, bio)  
     #  bio="empty string"
     users_list.append(user)
 
@@ -64,7 +64,8 @@ for _ in range(5):
 
     random_user = choice(users_list)
 
-    crud.create_reaction(random_user, reaction, video=random_video)
+
+    # crud.create_reaction(random_user, image, reaction=reaction, video=random_video)
 
 
 
@@ -99,8 +100,9 @@ model.db.session.commit()
 '''Assigning a reaction number to an image.'''
 for _ in range(5):
     random_image = choice(images_in_db)
+
     reaction = randint(1, 5) #similar to rating format, each reaction number will represent img/like
 
     random_user = choice(users_list)
 
-    crud.create_reaction(random_user, reaction, image=random_image)
+    crud.create_reaction(random_user, reaction=reaction, image=random_image, video=video)

@@ -12,20 +12,29 @@ from sqlalchemy import desc
 # os.system('createdb alisadb2')
 
 
-def create_user(first_name, last_name, username, email, password):
+def create_user(first_name, last_name, username, email, password, bio):
     """Create new user."""
 
-    user = User(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
+    user = User(first_name=first_name, last_name=last_name, username=username, email=email, password=password, bio=bio)
    
     db.session.add(user)
     db.session.commit()
 
     return user
 
+def update_bio(user_id, bio):
+    """Add user's bio."""
 
-#users::users
-#ratings::reacts
-#movies::videos
+    user = get_user_by_id(user_id)
+
+    user.bio = bio
+
+    db.session.commit()
+
+
+
+
+
 
 
 
@@ -51,19 +60,9 @@ def create_image(image_path, description, user_id):
 
     return image
 
-#TEST NO USER ID 
 
-# def create_image(image_path, description):
-#     """Create new video (info)."""
-#     #BRING BACK DATE_POSTED
-#     #ADD USER ID
 
-#     image = Image(image_path=image_path, description=description)
 
-#     db.session.add(image)
-#     db.session.commit()
-
-#     return image
 
 
 
@@ -93,7 +92,6 @@ def create_following(subscriber, creator):
     #This will go into the 'following' table
     db.session.add(following)
     db.session.commit()
-
 
     return following
 
@@ -164,7 +162,7 @@ def get_video_by_id(video_id):
 
 #///////////////////////////////////// Get Image Info/////////////////////////
 
-# emps = Employee.query.options(db.joinedload('dept')).all()
+
 def get_images_eager():
     """Eager load images to access username."""
     
@@ -219,11 +217,11 @@ def get_creators_subscriber(user_id):
     print('###THIS IS THE USER ID:', user_id)
     return User.query.get(user_id).subscribers
 
+
 # def get_subscribers_eager():
 #     """Eager load subscribers to access username."""
     
 #     return Following.query.options(db.joinedload('following')).order_by(desc(Following.subscriber_id)).all()
-
 
 
 

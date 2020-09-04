@@ -3,12 +3,12 @@
 {% block title %} {{ user.username }}'s Profile{% endblock %}
 
 {% block body %}
-  <h1>Hello {{ user.first_name }}</h1>
+
   <p name="user_id" id={{ user.user_id }}></p>
   <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
   <h2>profile</h2>
   <ul>
-    <li><a href="/feed">View feed.</a></li>
+    <li><a href="/feed">View feed</a></li>
     <!-- <li><a href="/feed">View all users</a></li> -->
   </ul>
 
@@ -27,9 +27,12 @@
   </div> 
 
   <h2>Bio</h2>
-  {% if text %}
-    <p>{{ text }}</p>
-  {% endif %}
+  {{ user.bio }}
+  <form action='/profile/bio' method="post" id="bio">
+    <textarea name="bio" id="bio"></textarea>
+    <input type="submit" id="submit-bio" name="submit" action="/profile/bio">bio</button>
+  </form>
+  
 
   <h3>Upload Video/Photo Here</h3>
     <div class="media-upload-form">

@@ -52,12 +52,13 @@ def create_account():
     print(user)
 
     print('***\n', user)
+    bio = ''
 
     if user:
         flash('Cannot create an account with that email. Try again.')
         print('firstname =', first_name, 'lastname =', last_name, 'username =', username, 'password =', password, 'email =', email)
     else:
-        crud.create_user(first_name, last_name, username, email, password)
+        crud.create_user(first_name, last_name, username, email, password, bio)
         flash('Account created! Please log in.')
 
     return redirect('/')
@@ -97,7 +98,7 @@ def logging_in_user():
         return redirect('/login')
     else:
         session['user_id'] = db_user.user_id
-        flash(f'Hello {db_user.username}')
+        flash(f'Hello {db_user.first_name}')
         return redirect(f'/profile/{db_user.user_id}')
 
 
@@ -139,23 +140,23 @@ def upload_images(user_id):
     
     return redirect(f'/profile/{user_id}') 
 
-
+ 
 
 #Store user bio
-@app.route('/submit', methods=['POST'])
-def submit():
-
-    # user = crud.get_user_by_id(user_id)
-    # session['user_id'] =  user
+@app.route('/profile/<user_id>', methods=['POST'])
+def submit_bio():
+    """Store user's bio."""
+    
     user_id = session.get('user_id')
 
+    bio = request.form.get("bio")
+    print("USERS BIO:", bio)
+
     user = crud.get_user_by_id(user_id)
-    images = crud.get_image_by_user_id(user_id)
 
-    text = request.form.get("text")
-    session['text'] = text
+    crud.update_bio(user_id, bio)
 
-    return render_template(f'profile.html', text=text, user=user, images=images)
+    return render_template(f'/profile/{user_id}', bio=bio, user=user) 
 
 @app.route('/profile/<user_id>')
 def get_subscribers_per_user(user_id):
