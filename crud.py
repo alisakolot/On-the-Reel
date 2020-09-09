@@ -31,6 +31,8 @@ def update_bio(user_id, bio):
 
     db.session.commit()
 
+    return 'bio created'
+
 
 
 

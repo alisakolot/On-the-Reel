@@ -150,11 +150,12 @@ def submit_bio():
     user_id = session.get('user_id')
 
     bio = request.form.get("bio")
-    print("USERS BIO:", bio)
+    
 
     user = crud.get_user_by_id(user_id)
 
-    crud.update_bio(user_id, bio)
+    new_bio = crud.update_bio(user_id, bio)
+    print('#######NEW BIO:', bio)
 
     return render_template(f'/profile/{user_id}', bio=bio, user=user) 
 
@@ -244,7 +245,7 @@ def like_button():
     print("REACTION:", reaction)
     return jsonify({"likes" : True })
 
-@app.route('/feed/', methods=['GET']) 
+@app.route('/feed', methods=['GET']) 
 def display_feed_logout():
     """Display Logout button."""
     

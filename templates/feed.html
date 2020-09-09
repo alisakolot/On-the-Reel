@@ -3,65 +3,97 @@
 
 
 {% block body %}
+
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">Feed
+
+    <ul class="navbar-nav ml-auto mt-7 mt-lg-0">
+      <li class="nav-item active">
+        <a href='/feed/profile/'>My Profile</a>
+      </li>
+    </ul>
+ 
+    <button class="logout" id="logout">Logout</button>
+
+  </nav>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+  <div style="display:flex;justify-content:center;align-items:center;">
+    <div>
   
 
-  <h1></h1>
+    {% for img in images %}
+      <div class="card" style="width: 30rem;">
 
-  <h2>feed</h2>
-    <p>MEDIA</p>
-    <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
-    <a href='/feed/profile/'>My Profile</a>
-  
-      {% for img in images %}
+        <ul><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
+          <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
+            <button id="follow-button" value="{{ img.user_id }}">Follow </button>
+          </section>
+        </ul>
+
         
-            <div><img src="{{ img.image_path }}" style="width:500px;height:600px;"></div>
-          
-            <div class="media-library" id="{{ img.image_id }}">
-              
-              Image Id: {{ img.image_id }}
-              Description: {{ img.description }}
-              User id: {{ img.user_id }}
 
-   
-              <li><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a></li>
-              
-                  <section class="likes">
-                    <button class="reaction-button"  value=1 method=POST action='/feed'>Like
-                      <!-- <i onclick="myFunction(this)" class="fa fa-thumbs-up" id="like-button"></i>
-                      <script>
-                      function myFunction(x) {
-                        x.classList.toggle("fa-thumbs-down");} -->
-                      </script>
-                    </button>
-                  </section>
-
-                  <section class="smiley" >
-                    <button class="reaction-button" value=2 method=POST action='/feed'>:)</button>
-                  </section>
-
-                  <section class="laughter" >
-                    <button class="reaction-button" value=3 method=POST action='/feed'>xD</button>
-                  </section>
-
-                  <section class="Meh" >
-                    <button class="reaction-button" value=4 method=POST action='/feed'>:/</button>
-                  </section>
-
-                  <section class="Angry" >
-                    <button class="reaction-button" value=5 method=POST action='/feed'>:C</button>
-                  </section>
-
-              </div>
-
-              <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
-                <button id="follow-button" value="{{ img.user_id }}">Follow </button>
-              </section>
-
-
-      {% endfor %}
+          <img src="{{ img.image_path }}" alt="..." class="img-thumbnail">
+            <div class="media-library" id="{{ img.image_id }}" value={{ img.image_id }}>
+                {{ img.description }}
+                Image Id: {{ img.image_id }}
+                User id: {{ img.user_id }}
+          </img>
     
-    </p>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+      
+            <section class="likes"></section>
+              <button class="reaction-button" value=1 method=POST action='/feed'>Like
+                <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png", alt="" style="width: 1rem;"></img>
+              </button>
+            </section>
+            <section class="smiley" >
+              <button class="reaction-button" value=2 method=POST action='/feed'>:)
+                <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png", alt="" style="width: 1rem;"></img>
+              </button>
+            </section>
+            <section class="laughter" >
+              <button class="reaction-button" value=3 method=POST action='/feed'>xD</button>
+            </section>
+            <section class="Meh" >
+              <button class="reaction-button" value=4 method=POST action='/feed'>:/</button>
+            </section>
+            <section class="Angry" >
+              <button class="reaction-button" value=5 method=POST action='/feed'>:C</button>
+            </section>
+
+            </div>
+          </div>
+
+
+
+          <br>
+
+        </div>
+
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      {% endfor %}
+
+    </div>
   </div>
+    
+  
+  
+
+
 
   <br>
   <br>
@@ -69,7 +101,8 @@
   
 
 {% endblock %}
-
+<!-- 
 {% block scripts %}
   <script src="/static/reactions.js"></script>
-{% endblock %}
+{% endblock %} -->
+

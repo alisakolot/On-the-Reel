@@ -4,61 +4,78 @@
 
 {% block body %}
 
-  <p name="user_id" id={{ user.user_id }}></p>
-  <button class="logout" id="logout" method=POST action='/feed'>Logout</button>
-  <h2>profile</h2>
-  <ul>
-    <li><a href="/feed">View feed</a></li>
-    <!-- <li><a href="/feed">View all users</a></li> -->
-  </ul>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">Profile
 
-    <form action="/submit" method="post" id={{ user.user_id }}>
-      <textarea name="text"></textarea>
-      <input type="submit">
-    </form>
+  <ul class="navbar-nav ml-auto mt-7 mt-lg-0"><a href="/feed">View feed</a></ul>
 
-  <div class="dropdown">Followers
-    <button class="dropbtn">Dropdown</button>
-    <div class="dropdown-content">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Subscribers
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       {% for subscr in subscribers %}
-        <a href='/profile/{{ subscr.subscriber_id }}'>Subscriber Id: {{ subscr.subscriber.username }} </a>
+        <a class="dropdown-item" href='/profile/{{ subscr.subscriber_id }}'>{{ subscr.subscriber.username }} </a>
       {% endfor %}
     </div>
-  </div> 
+  </div>
+
+  <button class="logout" id="logout">Logout</button>
+
+</nav>
+
+
 
   <h2>Bio</h2>
   {{ user.bio }}
-  <form action='/profile/bio' method="post" id="bio">
+  <form action='/profile/<user_id>' method="post" id="bio">
     <textarea name="bio" id="bio"></textarea>
     <input type="submit" id="submit-bio" name="submit" action="/profile/bio">bio</button>
   </form>
   
 
-  <h3>Upload Video/Photo Here</h3>
-    <div class="media-upload-form">
-      <form action="upload_file.php" method="post" id="media-upload-submit-form" enctype="multipart/form-data">
-        <br>
-        <input type="file" name="file" id="media-file">
-        <br>
-        <input type="submit" id="submit-media" name="submit" action="/profile">Upload</button>
-        <br>
-        <textarea name="user-description" id="user-description"></textarea>Description
-        <br>
-      </form>
-   
-  <div class="media-library" id=img.image_id>
-    <p>
+
+  <div class="card" style="width: 30rem;">
+    Upload Media Here
+      <div class="media-upload-form">
+        <form action="upload_file.php" method="post" id="media-upload-submit-form" enctype="multipart/form-data" required>
+          <br>
+          <input type="file" name="file" id="media-file" required>
+          <br>
+          <input type="submit" id="submit-media" name="submit" action="/profile">Upload</button required>
+          <br>
+          <textarea name="user-description" id="user-description"></textarea>Description
+          <br>
+        </form>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <br>
+    <br>
+
+  <div style="display:flex;justify-content:center;align-items:center;">
+    <div>
       {% for img in images %}
-        <br>
-        <br>
-        <img src="{{ img.image_path }}" style="width:500px;height:600px;"/>
-        {% for emoji in img.reactions %}
-          Emoji: {{ emoji.reaction }}
-        {% endfor %}
-        <br>
-        <br>
+      <div class="card" style="width: 30rem;">
+        <img src="{{ img.image_path }}" class="card-img-top">
+        <div class="card-body">
+          {{ img.description }}
+
+          {% for emoji in img.reactions %}
+            Emoji: {{ emoji.reaction }}
+          {% endfor %}
+
+          
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
       {% endfor %}
-    </p>
+    </div>
   </div>
     
 
