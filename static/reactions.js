@@ -33,7 +33,7 @@ $(document).ready(() => {
   //Reactions/Like buttons: 
 
   $('.reaction-button').on('click', (evt) => {
-    const btn = evt.target;
+    let btn = evt.target;
     console.log(evt.target);
     console.log(evt.target.id);
     console.log('text');
@@ -41,7 +41,7 @@ $(document).ready(() => {
     console.log(evt.target.parentNode.parentNode);
 
     console.log('');
-    let imageId = evt.target.parentNode.parentNode.id;
+    let imageId = btn.parentNode.parentNode.parentNode.id;
     console.log(imageId);
     console.log(typeof imageId);
 
