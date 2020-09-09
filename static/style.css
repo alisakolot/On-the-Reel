@@ -1,0 +1,57 @@
+/* style.css*/
+
+body {
+  background-color: #333300;
+  color: #130101;
+ }
+
+h2 {
+  font-family: sans-serif;
+  color: blue;
+}
+
+h2 {
+  color: pink;
+}
+
+
+
+form {
+  max-width: 600px;
+  padding:20px;
+  margin: auto;
+  text-align: center;
+} 
+
+/* div {
+  padding:10px;
+  width: 30rem;
+  border: 2px;
+  margin: auto;
+  border-color: rgb(211, 202, 204);
+}
+
+/* div {
+  background-color: blue;
+} */
+
+/* #notice {
+  font-family: monospace;
+  font-size: 3em;
+  width: 15em;
+  margin: 0 auto;
+} */
+
+aside {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+
+}
+
+
+
+
+
+

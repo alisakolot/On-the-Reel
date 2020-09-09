@@ -46,31 +46,31 @@
                 User id: {{ img.user_id }}
           </img>
     
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group mr-2" role="group" aria-label="First group">
+        <!-- <div container="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div container="btn-group mr-2" role="group" aria-label="First group"> -->
       
-            <section class="likes"></section>
-              <button class="reaction-button" value=1 method=POST action='/feed'>Like
-                <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png", alt="" style="width: 1rem;"></img>
+            <section class="likes">
+              <button class="reaction-button" value=1>Like
               </button>
             </section>
-            <section class="smiley" >
-              <button class="reaction-button" value=2 method=POST action='/feed'>:)
-                <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png", alt="" style="width: 1rem;"></img>
+
+            <section class="smiley">
+              <button class="reaction-button" value=2>:)
+                <!-- <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png", alt="" style="width: 1rem;"></img> -->
               </button>
             </section>
             <section class="laughter" >
-              <button class="reaction-button" value=3 method=POST action='/feed'>xD</button>
+              <button class="reaction-button" value=3>xD</button>
             </section>
             <section class="Meh" >
-              <button class="reaction-button" value=4 method=POST action='/feed'>:/</button>
+              <button class="reaction-button" value=4>:/</button>
             </section>
             <section class="Angry" >
-              <button class="reaction-button" value=5 method=POST action='/feed'>:C</button>
+              <button class="reaction-button" value=5>:C</button>
             </section>
 
-            </div>
-          </div>
+            <!-- </div>
+          </div> -->
 
 
 
@@ -85,6 +85,7 @@
       <br>
       <br>
       <br>
+      
       {% endfor %}
 
     </div>

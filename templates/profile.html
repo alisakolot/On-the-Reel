@@ -10,8 +10,7 @@
 
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Subscribers
-    </button>
+      Subscribers</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       {% for subscr in subscribers %}
         <a class="dropdown-item" href='/profile/{{ subscr.subscriber_id }}'>{{ subscr.subscriber.username }} </a>
@@ -25,12 +24,12 @@
 
 
 
-  <h2>Bio</h2>
+  <!-- <h2>Bio</h2>
   {{ user.bio }}
   <form action='/profile/<user_id>' method="post" id="bio">
     <textarea name="bio" id="bio"></textarea>
     <input type="submit" id="submit-bio" name="submit" action="/profile/bio">bio</button>
-  </form>
+  </form> -->
   
 
 
@@ -55,14 +54,14 @@
     <br>
     <br>
 
-  <div style="display:flex;justify-content:center;align-items:center;">
+  <div class="d-flex justify-content-center">
     <div>
       {% for img in images %}
       <div class="card" style="width: 30rem;">
         <img src="{{ img.image_path }}" class="card-img-top">
         <div class="card-body">
           {{ img.description }}
-
+          <br>
           {% for emoji in img.reactions %}
             Emoji: {{ emoji.reaction }}
           {% endfor %}
