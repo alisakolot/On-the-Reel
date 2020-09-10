@@ -3,17 +3,16 @@
 
 
 {% block body %}
+ 
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">Feed
 
   <ul class="navbar-nav ml-auto mt-7 mt-lg-0">
     <li class="nav-item active">
-      <a href='/feed/profile/'>My Profile</a>
+      <a class="btn btn-primary" href='/feed/profile/'>My Profile</a>
     </li>
   </ul>
-
-  <button class="logout" id="logout">Logout</button>
-
+  <button class="btn btn-secondary" id="logout">Logout</button>
 </nav>
 
 <br>
@@ -29,13 +28,17 @@
 
 
     {% for img in images %}
-    <div class="card" style="width: 30rem;">
-
-      <ul><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
-        <section class="follow-button" value="{{ img.user_id }}" id="{{ img.image_id }}">
-          <button id="follow-button" value="{{ img.user_id }}">Follow </button>
-        </section>
-      </ul>
+     
+        <div class="card" style="width: 30rem;">
+          <nav class="navbar navbar-light">
+            <ul><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
+              <section class="follow-button float-right" value="{{ img.user_id }}" id="{{ img.image_id }}">
+                <button class="btn btn-secondary" id="follow-button" value="{{ img.user_id }}">Follow </button>
+              </section>
+            </ul>
+          </nav>
+        
+      
 
 
 
@@ -49,8 +52,9 @@
         <div container="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div container="btn-group mr-2" role="group" aria-label="First group">
             <button class="reaction-button" value=1>Like</button>
-            <button class="reaction-button" value=2>:)</button>
-              <!-- <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png", alt="" style="width: 1rem;"></img> -->
+            <button class="reaction-button" value=2>:)
+              <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" class="reaction-button" value=2 alt="heart" style="width: 1rem;">
+            </button>
             <button class="reaction-button" value=3>xD</button>
             <button class="reaction-button" value=4>:/</button>
             <button class="reaction-button" value=5>:C</button>

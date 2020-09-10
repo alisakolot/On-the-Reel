@@ -1,7 +1,7 @@
 /* style.css*/
 
 body {
-  background-color: #333300;
+  background-color: white);
   color: #130101;
  }
 
@@ -22,6 +22,22 @@ form {
   margin: auto;
   text-align: center;
 } 
+.logout {
+  color: #fff;
+  background-color:grey;
+  border-color: rgb(69, 67, 67);
+
+}
+
+.col-4 { 
+  margin: 2em;
+
+}
+
+.media-library {
+
+}
+
 
 /* div {
   padding:10px;

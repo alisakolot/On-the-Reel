@@ -59,9 +59,11 @@ def create_account():
         print('firstname =', first_name, 'lastname =', last_name, 'username =', username, 'password =', password, 'email =', email)
     else:
         crud.create_user(first_name, last_name, username, email, password, bio)
-        flash('Account created! Please log in.')
+        flash(f'Hello {db_user.first_name}')
+        db_user = crud.get_username(username)
+        session['user_id'] = db_user.user_id
 
-    return redirect('/')
+        return redirect(f'/profile/{db_user.user_id}')
 
 
     # display/debug print what you get, when button is clicked
@@ -178,6 +180,9 @@ def display_logout():
     """Display Logout button."""
     
     return redirect('login.html')
+
+
+
 
 
 #////////////////////////////////////////////////////Feed//////////////////////////////////////////////////

@@ -3,90 +3,16 @@
 $(document).ready(() => {
 
 
-  // const button = document.getElementsByClassName("reaction-1");
-
-  // button.addEventListener('click', () => {
-  //   alert('Stop clicking me!');
-  // });
-
-  // $('.reaction').on('click', (evt) => {
-  //   alert("page connected");
-  //   console.log(evt.target);
-
-  //   const element = $(evt.target);
-  //     console.log(element)
-
-
-  //   const formInput = {reaction_val : $(evt.target).val(),
-  //     image_id : attribute};
-
-
-  //   $.get('/feed.json', formInput, (res) => {
-  //     alert('sent to server')
-    
-
-  //   });
-  // });
-
-
-
   //Reactions/Like buttons: 
 
   $('.reaction-button').on('click', (evt) => {
     let btn = evt.target;
-    console.log(evt.target);
-    console.log(evt.target.id);
-    console.log('text');
-    console.log(evt.target.parentNode);
-    console.log(evt.target.parentNode.parentNode);
-
-    console.log('');
     let imageId = btn.parentNode.parentNode.parentNode.id;
     console.log(imageId);
     console.log(typeof imageId);
 
-    // if (btn.innerText === 'Like') {
-    //   btn.innerText = 'Dislike';
-    //   console.log(btn.innerText)
-    // } else {
-    //   // btn.innerText = 'Like';
-    //   btn.disabled = true;
-    //   console.log(btn.innerText)
-    // }
-
-    // if (btn.innerText === ':)') {
-    //   btn.innerText = ':)';
-    //   console.log(btn.innerText)
-    // } else {
-    //   btn.disabled = true;
-    //   console.log(btn.innerText)
-    // }
-
-    // if (btn.innerText === 'xD') {
-    //   btn.innerText = 'xD';
-    //   console.log(btn.innerText)
-    // } else {
-    //   btn.disabled = true;
-    //   console.log(btn.innerText)
-    // }
-
-    // if (btn.innerText === ':/') {
-    //   btn.innerText = ':/';
-    //   console.log(btn.innerText)
-    // } else {
-    //   btn.disabled = true;
-    //   console.log(btn.innerText)
-    // }
-
-    // if (btn.innerText === ':C') {
-    //   btn.innerText = ':C';
-    //   console.log(btn.innerText)
-
-    // } else {
       btn.disabled = true;
-      console.log(btn.innerText)
-    // }
-
+      console.log(btn.innerHTML)
 
       const formInput = {likes_val : $(evt.target).val(), image_session : imageId};
         console.log(formInput)
@@ -132,7 +58,7 @@ $(document).ready(() => {
 
 
 
-  $('.logout').on('click', (evt) => {
+  $('#logout').on('click', (evt) => {
     const btn = evt.target;
     console.log("logging out ")
     $.get('/feed', (res) => {
@@ -141,7 +67,7 @@ $(document).ready(() => {
     });
 
   });
-  $('.logout').on('click', (evt) => {
+  $('#logout').on('click', (evt) => {
     const btn = evt.target;
     console.log("logging out ")
     $.get('/feed', (res) => {

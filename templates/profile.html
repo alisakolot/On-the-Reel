@@ -4,21 +4,72 @@
 
 {% block body %}
 
+
+
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">Profile
 
-  <ul class="navbar-nav ml-auto mt-7 mt-lg-0"><a href="/feed">View feed</a></ul>
+  <a class="btn btn-primary" href="/feed" role="button">Feed</a>
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Subscribers</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {% for subscr in subscribers %}
-        <a class="dropdown-item" href='/profile/{{ subscr.subscriber_id }}'>{{ subscr.subscriber.username }} </a>
-      {% endfor %}
+  <div class="btn-group" role="group" aria-label="Basic example">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Upload Memories!
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Upload Media</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="media-upload-form">
+              <form action="upload_file.php" method="post" id="media-upload-submit-form" enctype="multipart/form-data" required>
+                <input type="file" name="file" id="media-file" required>
+                <br>
+                <br>
+                Caption This!
+                <textarea name="user-description" id="user-description"></textarea>
+                <br>
+                <br>
+                <br>
+                <input type="submit" id="submit-media" name="submit" action="/profile" value="Upload Media"></button required>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Subscribers</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for subscr in subscribers %}
+          <a class="dropdown-item" href='/profile/{{ subscr.subscriber_id }}'>{{ subscr.subscriber.username }} </a>
+        {% endfor %}
+
+    
+
+    
+    </div>
+    <button class="btn btn-secondary" id="logout">Logout</button>
+
+  
+
     </div>
   </div>
 
-  <button class="logout" id="logout">Logout</button>
+  
+
+  
 
 </nav>
 
@@ -33,47 +84,53 @@
   
 
 
-  <div class="card" style="width: 30rem;">
-    Upload Media Here
-      <div class="media-upload-form">
-        <form action="upload_file.php" method="post" id="media-upload-submit-form" enctype="multipart/form-data" required>
-          <br>
-          <input type="file" name="file" id="media-file" required>
-          <br>
-          <input type="submit" id="submit-media" name="submit" action="/profile">Upload</button required>
-          <br>
-          <textarea name="user-description" id="user-description"></textarea>Description
-          <br>
-        </form>
-      </div>
-      <br>
-      <br>
-      <br>
-    </div>
 
     <br>
     <br>
 
-  <div class="d-flex justify-content-center">
-    <div>
+
+  
+    
+
+  <div class="container-fluid d-flex justify-content-center">
+    <div class="col-1"></div>
+    <div class="row">
       {% for img in images %}
-      <div class="card" style="width: 30rem;">
+      
+      <div class="card col-4">
         <img src="{{ img.image_path }}" class="card-img-top">
         <div class="card-body">
           {{ img.description }}
           <br>
           {% for emoji in img.reactions %}
-            Emoji: {{ emoji.reaction }}
-          {% endfor %}
+           
+            {% if emoji.reaction == 1 %}
+            <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png" style="width: 1rem;">
 
+            {% elif emoji.reaction == 2%}
+            <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" style="width: 1rem;">
+            {% elif emoji.reaction == 3%}
+            <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" style="width: 1rem;">
+           
+            {% elif emoji.reaction == 4%}
+            <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" style="width: 1rem;">
+           
+            {% elif emoji.reaction == 5%}
+            <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png" style="width: 1rem;">
+
+            {% endif %}
+          {% endfor %}
           
         </div>
       </div>
+      
       <br>
       <br>
       <br>
       <br>
+      
       {% endfor %}
+      <div class="col-5"></div>
     </div>
   </div>
     
