@@ -2,82 +2,108 @@
 {% block title %}Video App Home{% endblock %}
 
 {% block body %}
-  <h1>Welcome to the Video App!</h1>
+  <!-- <h1>Welcome to the Video App!</h1> -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+
+      <div style="display:flex;justify-content:center;align-items:center;">
   
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">On The Reel</h5>
+              <div class=div class="fadeIn first"><img src="/static/img/image.png" style="width:15rem;"></div>
 
-
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-account">
-    Create an Account
-  </button>
-
-  <div class="modal fade" id="create-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Create Account</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="registration-form">
-            <h2>Create an Account</h2>
-            <form name="account-info" action="/login" method="POST" required>
-              <p>First Name <input type="text" name="first-name" required></p>
-              <p>Last Name <input type="text" name="last-name" required></p>
-              <p>Username <input type="text" name="username" required></p>
-              <p>Email <input type="text" name="email" required></p>
-              <p>Password <input type="password" name="password" required></p>
-              <p><input type="submit"></p>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-account">
+              Create an Account
+            </button>
+          
+            <div class="modal fade" id="create-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="registration-form">
+                      <form name="account-info" action="/login" method="POST" required>
+                        <p>First Name <input type="text" name="first-name" required></p>
+                        <p>Last Name <input type="text" name="last-name" required></p>
+                        <p>Username <input type="text" name="username" required></p>
+                        <p>Email <input type="text" name="email" required></p>
+                        <p>Password <input type="text" name="password" required></p>
+                        <p><input type="submit"></p>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+    
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login-modal">
+              Log In
+            </button> 
+          
+            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                    <div class="modal-body">
+                      <div class="login-form">
+                        <form action="/login_user" method="GET">
+                          <p>Username <input type="text" name="username" id="username"></p>
+                          <p>Password <input type="text" name="password" id="password" required></p>
+                          <p><input type="submit"></p>
+                        </form>
+                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
         </div>
       </div>
+    
     </div>
   </div>
+  
+  
 
-
-  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login-modal">
-    Log In
-  </button>
-
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-          <div class="modal-body">
-            <div class="login-form">
-              <form action="/login_user" method="GET">
-                <p>Username <input type="text" name="username" id="username"></p>
-                <p>Password <input type="password" name="password" id="password" required></p>
-                <p><input type="submit"></p>
-              </form>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+  <!-- <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <!-- <div class="fadeIn first">
+        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
       </div>
+  
+      <!-- Login Form -->
+      <!-- <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form> -->
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
     </div>
-  </div>
-  
-   
-
-  
-
-  <!-- Log in Info -->
-  <button type="button">Login</button> 
-  <!-- <a href='/login'>Go to Log In page</a>
-
-  </div>
-
+  </div> -->
 
 {% endblock %}
