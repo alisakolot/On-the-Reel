@@ -3,9 +3,12 @@
 
 
 {% block body %}
- 
 
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">Feed
+
+
+
+
+<nav class="navbar sticky-top navbar-light" style="background-color: #e3f2fd;">Feed
 
   <ul class="navbar-nav ml-auto mt-7 mt-lg-0">
     <li class="nav-item active">
@@ -21,48 +24,62 @@
 <br>
 
 
+<!-- <div class="sidenav" id="side_nav"> Suggestions for you:
+  {% for img in images %}
+   <ul><a id="feed-username" href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
+  {% endfor %}
+</div> -->
+
+<!-- Page content -->
+<div class="main">
+  ...
+</div>
 
 
 <div style="display:flex;justify-content:center;align-items:center;">
   <div>
 
-
     {% for img in images %}
-     
-        <div class="card" style="width: 30rem;">
+  
+        <div class="card" style="width: 45rem;">
           <nav class="navbar navbar-light">
-            <ul><a href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
+            <ul><a id="feed-username" href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
+              <i class="far fa-user"></i>
               <section class="follow-button float-right" value="{{ img.user_id }}" id="{{ img.image_id }}">
-                <button class="btn btn-secondary" id="follow-button" value="{{ img.user_id }}">Follow </button>
+                <button class="btn btn-secondary btn-sm" id="follow-button" value="{{ img.user_id }}">Follow </button>
               </section>
             </ul>
           </nav>
-        
-      
-
-
 
       <img src="{{ img.image_path }}" alt="..." class="img-thumbnail">
       <div class="media-library" id="{{ img.image_id }}" value={{ img.image_id }}>
+        <a id="feed-username" href='/profile/{{ img.user_id }}'>{{ img.user.username }}</a>
         {{ img.description }}
-        Image Id: {{ img.image_id }}
-        User id: {{ img.user_id }}
-        
+        <br>
+        <br>
 
         <div container="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div container="btn-group mr-2" role="group" aria-label="First group">
-            <button class="reaction-button" value=1>Like</button>
-            <button class="reaction-button" value=2>:)
+          <div container="btn-group mr-2" role="group" aria-label="First group" id="first-group">
+            <button id="likes" class="reaction-button" value=1>Like
+              <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531171/XZOPuv9_eyqlr2.png" style="width: 1rem;"></button>
+       
+              <button id="smiley" class="reaction-button" value=2>:)
               <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531172/uIjLl6R_cmbnqb.png" class="reaction-button" value=2 alt="heart" style="width: 1rem;">
             </button>
-            <button class="reaction-button" value=3>xD</button>
-            <button class="reaction-button" value=4>:/</button>
-            <button class="reaction-button" value=5>:C</button>
+            <button class="reaction-button" value=3>xD
+              <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/lsHmtDy_ycqnbp.png" style="width: 1rem;">
+            </button>
+            <button class="reaction-button" value=4>:0
+              <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531177/s475u9d_o8trbg.png" style="width: 1rem;">
+            </button>
+            <button class="reaction-button" value=5>:C
+              <img src="https://res.cloudinary.com/prvnbist/image/upload/v1492531178/VDM3zOV_qy9fqj.png"style="width: 1rem;">
+            </button>
+
           </div>
         </div>
 
-
-
+       
 
         <br>
 
@@ -78,12 +95,8 @@
 
     {% endfor %}
 
-  </div>
-</div>
-
-
-
-
+  
+ 
 
 
 <br>

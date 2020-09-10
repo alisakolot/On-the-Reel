@@ -51,7 +51,7 @@ $(document).ready(() => {
       const btn = evt.target;
       $.get('/feed', (res) => {
             alert('Logout?');
-            window.location = "http://localhost:5000/login"
+            window.location = "http://localhost:5000/"
       });
     });
 
@@ -62,8 +62,8 @@ $(document).ready(() => {
     const btn = evt.target;
     console.log("logging out ")
     $.get('/feed', (res) => {
-          alert('Logout?');
-          window.location = "http://localhost:5000/login"
+          alert('Are you sure you want to Logout?');
+          window.location = "http://localhost:5000/"
     });
 
   });
@@ -89,14 +89,11 @@ $(document).ready(() => {
 
     if (btn.innerText === 'Follow') {
       $.get('/follow/feed.json', formInput, (res) => {
-        alert('you followed user x');
-
         btn.innerText = 'Unfollow'; 
       });
 
     } else if (btn.innerText === 'Unfollow') { 
         $.get('/feed/unfollow', formInput, (res) => {
-          alert('you unfollowed user x');
         })
           btn.innerText = 'Follow'; 
           
@@ -105,33 +102,10 @@ $(document).ready(() => {
       console.log(btn.innerText)
     }
 
-    // const formInput = {follows : $(evt.target).val()};
 
-    // $.get('/follow/feed.json', formInput, (res) => {
-    //     alert('sent to server')
-        
-    // });
   });
 
-  
 
-
-
-  //Return to Profile
-  // $('.profile').on('click', (evt) => {
-  //   const btn = evt.target;
-
-
-  //   ('/feed/profile/', (res) => {
-  //     let userId = user_id;
-  //       window.location.href = `feed/profile/`;
-  //       alert('redirect to profile?');
-  //   });
-
-  // });
-  
-
-  
 
 })
 

@@ -94,10 +94,10 @@ def logging_in_user():
  
     if db_user is None: 
         flash('Incorrect username/password, please try again.')
-        return redirect('/login')
+        return redirect('/')
     if db_user.password != password:
         flash('Incorrect username/password, please try again.')
-        return redirect('/login')
+        return redirect('/')
     else:
         session['user_id'] = db_user.user_id
         flash(f'Hello {db_user.first_name}')
@@ -179,7 +179,7 @@ def get_subscribers_per_user(user_id):
 def display_logout():
     """Display Logout button."""
     
-    return redirect('login.html')
+    return redirect('/')
 
 
 
@@ -203,6 +203,14 @@ def all_image_urls():
         
     print(images[1].user.username)
     return render_template('feed.html', images=images)
+
+@app.route('/feed')
+def all_users():
+    """View all profiles"""
+
+    users = crud.get_users()
+
+    return render_template('feed.html', users=users)
 
 
 
@@ -250,11 +258,12 @@ def like_button():
     print("REACTION:", reaction)
     return jsonify({"likes" : True })
 
+
 @app.route('/feed', methods=['GET']) 
 def display_feed_logout():
     """Display Logout button."""
     
-    return redirect('login.html')
+    return redirect('/') 
 
 # @app.route('/feed/profile/', methods=['GET'])
 # def leave_feed():

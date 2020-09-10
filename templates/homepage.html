@@ -3,6 +3,35 @@
 
 {% block body %}
   <!-- <h1>Welcome to the Video App!</h1> -->
+
+  <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="{{ category }}" id="flash">{{ message }}</div>
+    {% endfor %}
+  {% endwith %} -->
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible" role="alert" id="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!-- <strong>Title</strong> --> {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+
+  <style>
+  body {
+    background-image: url('/static/img/62e82dad5fc68b7fed91bc9818e68018.jpg');
+    background-position: 50% 50%;
+    background-repeat: repeat;
+  }
+  </style>
+<div style="background-image: url('/static/img/62e82dad5fc68b7fed91bc9818e68018.jpg');" class="homepage-img"> 
+
   <div class="wrapper fadeInDown">
     <div id="formContent">
 
@@ -28,7 +57,7 @@
                   </div>
                   <div class="modal-body">
                     <div class="registration-form">
-                      <form name="account-info" action="/login" method="POST" required>
+                      <form name="account-info" action="/login" method="POST" required >
                         <p>First Name <input type="text" name="first-name" required></p>
                         <p>Last Name <input type="text" name="last-name" required></p>
                         <p>Username <input type="text" name="username" required></p>
@@ -80,30 +109,9 @@
     </div>
   </div>
   
+
+  
   
 
-  <!-- <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-  
-      <!-- Icon -->
-      <!-- <div class="fadeIn first">
-        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-      </div>
-  
-      <!-- Login Form -->
-      <!-- <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form> -->
-  
-      <!-- Remind Passowrd -->
-      <!-- <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div>
-  
-    </div>
-  </div> -->
 
 {% endblock %}
