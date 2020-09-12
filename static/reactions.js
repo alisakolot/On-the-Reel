@@ -18,7 +18,7 @@ $(document).ready(() => {
         console.log(formInput)
 
     $.get('/feed.json', formInput, (res) => {
-          alert('sent to server')
+ 
     
     });
 
@@ -36,7 +36,7 @@ $(document).ready(() => {
     console.log(btn)
       
     $.get('/feed.json', formInput, (res) => {
-          alert('sent img id')
+
     
     });
 
