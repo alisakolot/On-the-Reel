@@ -12,3 +12,20 @@ The minimal viable product goals of the project was to create an app that would 
 and display photos to their page as well as the feed. 
 
 In the future the app will implement a chat feature that would allow users to message each other. 
+
+
+Installation Requirements: 
+
+Flask 
+Flask SQL Alchemy
+Jinja 2
+
+Javascript 
+JQuery
+Bootstrap 
+
+Cloudinary API
+
+
+
+
