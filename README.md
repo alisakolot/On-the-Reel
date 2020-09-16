@@ -19,17 +19,17 @@ In the future the app will implement a chat feature that would allow users to me
 Alisa Kolot is a composer and musician turned software engineer. Her interest in technology began when she contributed audio to Harvard’s Library Innovation Lab's immersive audio-visual environment, Alterspace. At Alterspace was inspired by the accessibility of the user interfaces that lended agency to the patron, allowing them to manipulate their own immersive audio-visual environment. This sparked her interest in creating 'On the Real,' an web application that facilitates user interaction. In the future she looks forward to making music and visual art more accessible by using touchless technology. 
 
 
-#### Technology Requirements: 
-
-Flask 
-Flask SQL Alchemy
-Jinja 2
-
-Javascript 
-JQuery
-Bootstrap 
-
-Cloudinary API
+## <a name="tech-stack"></a>Technologies
+* Python
+* Flask
+* Jinja2
+* PostgresQL
+* SQLAlchemy ORM
+* HTML
+* CSS
+* Bootstrap
+* jQuery
+* Cloudinary
 
 #### Installation
 
