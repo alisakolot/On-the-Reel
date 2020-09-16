@@ -31,7 +31,50 @@ Alisa Kolot is a composer and musician turned software engineer. Her interest in
 * jQuery
 * Cloudinary
 
-#### Installation
+## <a name="installation"></a>Installation
+To run On the Reel:
+
+Install PostgresQL (Mac OSX)
+
+Clone or fork this repo:
+```
+https://github.com/alisakolot/HB-Project
+```
+
+Create and activate a virtual environment inside your On the Reel directory:
+```
+virtualenv env
+source env/bin/activate
+```
+
+Install the dependencies:
+```
+pip install -r requirements.txt
+```
+
+Sign up to use the [Cloudinary API](https://cloudinary.com/)
+
+Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
+
+```
+export CLOUDINARY_API_KEY="YOUR_KEY_HERE"
+export SECRET_KEY="YOUR_SECRET_KEY_HERE"
+```
+
+Set up and download your Cloudinary API and save to file called <kbd>secrets.sh</kbd>.
+
+Source your keys from your secrets.sh file into your virtual environment:
+
+```
+source secrets.sh
+```
+
+Set up the database:
+
+```
+createdb mediadb
+python3 model.py
+python3 seed.py
 
 #### Features
 with screenshots
