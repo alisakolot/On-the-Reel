@@ -89,9 +89,11 @@ python3 server.py
 #### Homepage
 
 Users can register or login. 
+
 <img width="776" alt="homepage" src="https://user-images.githubusercontent.com/68030340/93289910-27f12100-f7a5-11ea-9b42-39a7194aeb78.png">
 
 Uses modular forms for both login and creating an account. 
+
 ![login](https://user-images.githubusercontent.com/68030340/93289860-0859f880-f7a5-11ea-81a3-e2ed0c3f6e92.gif)
 
 
