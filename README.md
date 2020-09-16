@@ -75,13 +75,28 @@ Set up the database:
 createdb mediadb
 python3 model.py
 python3 seed.py
+```
 
-#### Features
-with screenshots
--add contents 
--about me, personal bio/motivation for the project
+Run the app:
 
--screenshots
+```
+python3 server.py
+```
+
+
+## <a name="features"></a>Features
+
+#### Homepage
+Users can register or login 
+
+
+#### Profile Page
+Users can upload their media using the 'Upload Memories!' button. Supported formats: .jpg, .gif
+
+#### Feed
+Users can view uploads on Feed and react react with emoji buttons as well as subscribe/unsubscribe from each other's channels. Users can navigate to each other's accounts. 
+
+
 
 
 
