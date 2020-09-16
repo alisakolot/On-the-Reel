@@ -87,14 +87,32 @@ python3 server.py
 ## <a name="features"></a>Features
 
 #### Homepage
-Users can register or login 
+
+Users can register or login. 
+<img width="776" alt="homepage" src="https://user-images.githubusercontent.com/68030340/93289910-27f12100-f7a5-11ea-9b42-39a7194aeb78.png">
+
+Uses modular forms for both login and creating an account. 
+![login](https://user-images.githubusercontent.com/68030340/93289860-0859f880-f7a5-11ea-81a3-e2ed0c3f6e92.gif)
 
 
 #### Profile Page
 Users can upload their media using the 'Upload Memories!' button. Supported formats: .jpg, .gif
 
+![upload](https://user-images.githubusercontent.com/68030340/93290149-b1a0ee80-f7a5-11ea-88cd-17f2edf0c1c4.gif)
+
+Users can see their followers
+
+![subscribers](https://user-images.githubusercontent.com/68030340/93289978-4b1bd080-f7a5-11ea-9a0f-369420db91e8.gif)
+
+
+
+
+
 #### Feed
 Users can view uploads on Feed and react react with emoji buttons as well as subscribe/unsubscribe from each other's channels. Users can navigate to each other's accounts. 
+
+![feed](https://user-images.githubusercontent.com/68030340/93290035-6edf1680-f7a5-11ea-8668-d2c3152f6c08.gif)
+
 
 
 
